@@ -1,4 +1,5 @@
-'use client';
+"use client";
+import StartContainer from "@/app/components/Home/StartContainer";
 import React, { useState } from "react";
 
 function HomePage() {
@@ -6,7 +7,10 @@ function HomePage() {
   return (
     <div>
       {login ? (
-        <div>comprobar si esta ok el login si es asi abrir el home</div>
+        // hacer un chequeo si esta logeado... mientras cargar un loading / si se esta logeado mostrar inicialmente la pantalla de start y luego redirijir a la home
+        <div className="">
+          <StartContainer/>
+        </div>
       ) : (
         <div>
           LOGIN /// mandar a pantalla de login si no tiene login enviar a
