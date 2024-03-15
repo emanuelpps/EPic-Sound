@@ -3,13 +3,12 @@ import AsideBar from "../../AsideBar/AsideBar";
 import HeaderBar from "../../HeaderBar/HeaderBar";
 import MainMenu from "./MainMenu/MainMenu";
 import CenterMenu from "./CenterMenu/CenterMenu";
-import FooterMenu from "./FooterMenu/FooterMenu";
 
 function HomeBox() {
   return (
     <div
-      className="flex w-[full] h-[full] backdrop-blur-[6px] backdrop-saturate-[135%] bg-[rgba(23,22,36,0.29)] border rounded-xl border-solid border-[rgba(255,255,255,0.125)];
-      -webkit-backdrop-filter: blur(6px) saturate(135%);"
+      className="flex w-[full] h-[full]  backdrop-blur-[9px] backdrop-saturate-[200%] bg-[rgba(23,22,36,0.88)] rounded-xl 
+      -webkit-backdrop-filter: blur(9px) saturate(200%)"
     >
       <aside id="aside-container">
         <AsideBar />
@@ -23,9 +22,6 @@ function HomeBox() {
         </div>
         <div id="center-menu">
           <CenterMenu />
-        </div>
-        <div id="footer-menu">
-          <FooterMenu />
         </div>
       </div>
     </div>

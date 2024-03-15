@@ -1,10 +1,14 @@
 import React from "react";
-import AlbumWeek from "./AlbumWeek";
+import AlbumWeek from "./components/AlbumWeek/AlbumWeek";
+import PopularTracks from "./components/PopularTracks/PopularTracks";
+import MiniPlayer from "./components/MiniPlayer/MiniPlayer";
 
 function CenterMenu() {
   return (
-    <div>
+    <div className="grid grid-cols-5 grid-rows-5 gap-4 ml-28">
       <AlbumWeek />
+      <PopularTracks />
+      <MiniPlayer />
     </div>
   );
 }
