@@ -4,7 +4,7 @@ import epicLogo from "../../../../../public/assets/images/play-logo.png";
 
 function LogoContainer() {
   return (
-    <div className="flex justify-center items-center w-full h-full mt-5">
+    <div className="flex justify-center items-center w-full h-full">
       <Image
         className="justify-center items-center"
         src={epicLogo}

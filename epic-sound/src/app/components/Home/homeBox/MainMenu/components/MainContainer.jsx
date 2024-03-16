@@ -4,9 +4,9 @@ import coverImage from "../../../../../../../public/assets/images/big-dollar-sig
 
 function MainContainer() {
   return (
-    <div className="col-span-3 row-span-5 flex ml-28">
+    <div className="col-span-3 row-span-5 flex ml-10">
       <div className=" rounded-md">
-        <Image src={coverImage} alt="logo"  className="object-none h-64 w-[800px] rounded-xl"/>
+        <Image src={coverImage} alt="logo"  className="object-none h-56 w-[700px] rounded-xl"/>
       </div>
     </div>
   );

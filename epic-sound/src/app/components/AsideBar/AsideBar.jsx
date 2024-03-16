@@ -7,8 +7,8 @@ import Exit from "./components/Exit";
 function AsideBar() {
   return (
     <div
-      className="flex flex-col backdrop-blur-[9px] backdrop-saturate-[200%] bg-[rgba(23,22,36,0.88)] rounded-l-xl 
-    -webkit-backdrop-filter: blur(9px) saturate(200%) w-20"
+      className="flex flex-col backdrop-blur-[9px] backdrop-saturate-[200%] bg-[rgba(23,22,36,0.88)] rounded-l-[50px] 
+    -webkit-backdrop-filter: blur(9px) saturate(200%) w-20 h-full"
     >
       <LogoContainer />
       <NavBar />

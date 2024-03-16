@@ -36,11 +36,11 @@ function TrendingArtist() {
     },
   ]);
   return (
-    <div className="col-span-2 row-span-5 col-start-4 place-self-center">
+    <div className="row-span-5 col-start-4 flex flex-col items-start">
       <div id="trending-artist-title" className="flex gap-10">
-        <h2>Trending Artist</h2>
-        <div>
-          <button className="text-xs">See All</button>
+        <h2 className="text-xs">Trending Artist</h2>
+        <div className="flex justify-center items-center">
+          <button className="text-[0.7rem]">See All</button>
         </div>
       </div>
       <div id="trending-artist-list">
