@@ -5,7 +5,7 @@ import MiniPlayer from "./components/MiniPlayer/MiniPlayer";
 
 function CenterMenu() {
   return (
-    <div className="grid grid-cols-5 grid-rows-5 gap-4 pl-10">
+    <div className="grid grid-cols-5 grid-rows-5 gap-4">
       <AlbumWeek />
       <PopularTracks />
       <MiniPlayer />

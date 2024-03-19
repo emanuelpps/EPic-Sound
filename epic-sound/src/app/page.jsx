@@ -1,11 +1,24 @@
-import Image from 'next/image';
-import HomePage from './pages/Home/index';
+"use client";
+import StartContainer from "@/app/components/Home/StartContainer";
+import React, { useState } from "react";
 
-export default function Home() {
+function HomePage() {
+  const [login, setLogin] = useState(true);
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
-      <HomePage />
-
-    </main>
+    <div>
+      {login ? (
+        // hacer un chequeo si esta logeado... mientras cargar un loading / si se esta logeado mostrar inicialmente la pantalla de start y luego redirijir a la home
+        <div className="">
+          <StartContainer/>
+        </div>
+      ) : (
+        <div>
+          LOGIN /// mandar a pantalla de login si no tiene login enviar a
+          registrase
+        </div>
+      )}
+    </div>
   );
 }
+
+export default HomePage;

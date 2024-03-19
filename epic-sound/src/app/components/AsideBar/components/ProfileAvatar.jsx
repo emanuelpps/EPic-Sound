@@ -29,7 +29,7 @@ function ProfileAvatar() {
       >
         <button>
           <Link href={"#"}>
-            <GoGear className="hover:text-[#f88ea0]" />
+            <GoGear className="hover:text-[#f88ea0] text-xl" />
           </Link>
         </button>
       </div>

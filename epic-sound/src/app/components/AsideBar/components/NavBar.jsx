@@ -13,7 +13,7 @@ function NavBar() {
       <div id="home-icon-container">
         <button>
           <Link href={"#"}>
-            <LuHome className="hover:text-[#f88ea0]"/>
+            <LuHome className="hover:text-[#f88ea0] text-xl" />
           </Link>
         </button>
       </div>
@@ -23,7 +23,7 @@ function NavBar() {
       >
         <button>
           <Link href={"#"}>
-            <BiLibrary className="hover:text-[#f88ea0]"/>
+            <BiLibrary className="hover:text-[#f88ea0] text-xl" />
           </Link>
         </button>
       </div>
@@ -33,13 +33,11 @@ function NavBar() {
       >
         <button>
           <Link href={"#"}>
-            <IoIosMusicalNotes className="hover:text-[#f88ea0]"/>
+            <IoIosMusicalNotes className="hover:text-[#f88ea0] text-xl" />
           </Link>
         </button>
       </div>
     </div>
-    
-    
   );
 }
 

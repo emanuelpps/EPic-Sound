@@ -8,7 +8,7 @@ function Exit() {
       <div className="flex justify-center items-center">
         <button>
           <Link href={"#"}>
-            <RiLogoutBoxLine className="hover:text-[#f88ea0]" />
+            <RiLogoutBoxLine className="hover:text-[#f88ea0] text-xl" />
           </Link>
         </button>
       </div>
