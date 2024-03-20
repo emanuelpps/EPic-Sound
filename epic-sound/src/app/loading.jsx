@@ -1,4 +1,6 @@
 import React from "react";
+import Image from "next/image";
+import epicLogo from "../../public/assets/images/play-logo.png";
 
 function loading() {
   return (
