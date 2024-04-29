@@ -1,5 +1,4 @@
 import axios from "axios";
-import { AxiosError } from "axios";
 
 async function trendingTracks() {
   try {
@@ -10,7 +9,7 @@ async function trendingTracks() {
     return response.data;
   } catch (error) {
     console.log(error);
-    return AxiosError(message);
+    return error.message;
   }
 }
 
