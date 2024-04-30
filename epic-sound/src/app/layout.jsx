@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.className}`}>
-        <main className="w-auto h-screen max-h-[screen]  flex justify-center items-center bg-[#a8787e] overflow-y-hidden">
+        <main className="w-auto max-h-screen pt-5 pb-5 flex justify-center items-center bg-[#a8787e] overflow-y-hidden">
           <div
             className="grid grid-cols-[100px_auto] m-10  gap-1 grid-rows-[80px_auto]  max-h-screen  backdrop-blur-[9px] backdrop-saturate-[200%] bg-[rgba(23,22,36,0.88)] rounded-[50px] 
       -webkit-backdrop-filter: blur(9px) saturate(200%)"

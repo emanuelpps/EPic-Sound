@@ -14,7 +14,7 @@ function AlbumWeek() {
     const getTrendingAlbums = async () => {
       try {
         const response = await trendingAlbums();
-        setAlbumList(response.data.slice(0, 4));
+        setAlbumList(response.data.slice(0, 5));
         setApiResponse({ isLoading: false });
         console.log("response", response.data);
       } catch (error) {
@@ -36,13 +36,13 @@ function AlbumWeek() {
           <h2 className="text-xs">Album of the Week</h2>
           <div className="flex gap-24 pt-2">
             {albumList.map((album) => (
-              <div key={album.id} className="flex flex-col">
+              <div key={album.id} className="flex flex-col cursor-pointer">
                 {album.artwork && album.artwork["480x480"] && (
                   <img
                     src={album.artwork["480x480"]}
                     alt="logo"
-                    width={150}
-                    height={180}
+                    width={80}
+                    height={80}
                     className="rounded-xl"
                   />
                 )}
