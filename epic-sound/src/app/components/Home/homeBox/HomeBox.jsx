@@ -6,7 +6,7 @@ import CenterMenu from "./CenterMenu/CenterMenu";
 
 function HomeBox() {
   return (
-    <div id="inside-box">
+    <div id="inside-box" className="">
       <div id="main-menu">
         <MainMenu />
       </div>

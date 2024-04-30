@@ -2,8 +2,8 @@ import React from "react";
 
 function SearchBar() {
   return (
-    <div>
-      <div className="m-5">
+    <div className="mt-2">
+      <div className="flex justify-center items-center">
         <form className="max-w-md mx-auto w-[500px]">
           <label
             for="default-search"
