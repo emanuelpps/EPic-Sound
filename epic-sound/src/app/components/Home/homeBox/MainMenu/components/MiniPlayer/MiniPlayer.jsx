@@ -10,12 +10,16 @@ import { CgPlayPauseO } from "react-icons/cg";
 import { CgPlayTrackNext } from "react-icons/cg";
 import { CgPlayTrackPrev } from "react-icons/cg";
 import { CgRepeat } from "react-icons/cg";
+import streamTrack from "@/services/streamTrack";
+import fetchTrackData from "@/services/getTrack";
 
-function MiniPlayer() {
+function MiniPlayer(props) {
   const [isLiked, setIsLiked] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isShuffle, setIsShuffle] = useState(false);
   const [isRepeat, setIsRepeat] = useState(false);
+  const [trackPlaying, setTrackPlaying] = useState({});
+  const [trackData, setTrackData] = useState({});
   const [artistList, setArtistList] = useState([
     {
       id: 1,
@@ -30,6 +34,35 @@ function MiniPlayer() {
       albumsComercializados: 10,
     },
   ]);
+
+  const getTrackData = async (id) => {
+    try {
+      const response = await fetchTrackData(id);
+      setTrackData(response.data);
+      setApiResponse({ isLoading: false });
+      console.log("trackData", response);
+    } catch (error) {
+      console.log("error", error);
+      setApiResponse({ response: error.message });
+    }
+  };
+
+  const streamingTrack = async (id) => {
+    try {
+      const response = await streamTrack(id);
+      setTrackPlaying(response.data);
+      props.setTrackId(id);
+      getTrackData(id);
+      setIsPlaying(true);
+      console.log("TRACK", response);
+    } catch (error) {
+      console.log("error", error);
+      setApiResponse({ response: error.message });
+    }
+  };
+
+  console.log("trackPlaying", trackData);
+
   return (
     <div className="row-span-2 row-start-2 justify-center items-center">
       <div className="flex justify-start w-[300px]">
@@ -39,20 +72,20 @@ function MiniPlayer() {
         className="backdrop-blur-[10px] backdrop-saturate-[38%] bg-[rgba(248,142,160,0.22)] border rounded-xl border-[rgba(255,255,255,0.125)]
         -webkit-backdrop-filter: blur(10px) saturate(38%) h-[360px] w-[250px]"
       >
-        <div className="flex justify-center items-center mt-5">
-          <Image
-            src={profilePicture}
-            alt="logo"
-            width={100}
-            height={100}
-            className="rounded-xl"
-          />
+        <div className="flex justify-center items-center mt-5 w-full">
+          {trackData.artwork && trackData.artwork["480x480"] && (
+            <img
+              src={trackData.artwork["480x480"]}
+              alt="logo"
+              className="object-cover rounded-xl w-20"
+            />
+          )}
         </div>
         <div id="player" className="ml-10 mr-10">
           <div className="flex flex-row w-full justify-around items-center mt-5">
-            <div className="flex flex-col w-full items-center justify-center">
-              <h3>{artistList[0].cancion}</h3>
-              <p className="text-[0.7rem]">{artistList[0].nombre}</p>
+            <div className="flex flex-col w-[fit-content] items-center justify-center">
+              <h3 className="text-[0.7rem]">{trackData?.title}</h3>
+              <p className="text-[0.7rem]">{artistList.user?.name}</p>
             </div>
             <div className="flex flex-row w-full items-center justify-center gap-2">
               <RiMenuAddFill />
@@ -103,8 +136,8 @@ function MiniPlayer() {
                   />
                 ) : (
                   <CgPlayButtonO
-                    onClick={() => setIsPlaying(!isPlaying)}
                     className="text-[2.5rem]"
+                    onClick={() => streamingTrack("D7KyD")}
                   />
                 )}
               </div>
