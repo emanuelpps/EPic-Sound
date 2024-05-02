@@ -5,12 +5,12 @@ import Bell from "./components/Bell";
 
 function HeaderBar() {
   return (
-    <div className="max-w-[1300px] min-w-[300px] w-screen flex justify-around">
-      <div className="flex flex-row gap-10 justify-start">
+    <div className="max-w-[90vw] min-w-[300px]  flex justify-between items-center">
+      <div className="flex flex-row gap-10 justify-start min-w-full">
         <BackFoward />
         <SearchBar />
       </div>
-      <div className="flex justify-end items-center w-96">
+      <div className="flex justify-end items-center w-screen">
         <Bell />
       </div>
     </div>

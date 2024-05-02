@@ -36,22 +36,30 @@ function TrendingArtist() {
     },
   ]);
   return (
-    <div className="row-span-5 col-start-4 flex flex-col items-start">
-      <div id="trending-artist-title" className="flex gap-10">
-        <h2 className="text-xs">Trending Artist</h2>
-        <div className="flex justify-center items-center">
-          <button className="text-[0.7rem]">See All</button>
-        </div>
-      </div>
-      <div id="trending-artist-list">
-        {artistList.map((artis) => (
-          <div className="flex gap-10 mt-2 justify-center">
-            <div>
-              <Image src={profilePicture} alt="logo" width={30} height={50} className="rounded-full"/>
-            </div>
-            <h3>{artis.nombre}</h3>
+    <div className="row-start-1 row-span-5 col-span-4 col-start-5 flex w-[250px] flex-col bg-[#2d1b30] rounded-xl mr-5">
+      <div className="">
+        <div id="trending-artist-title" className="flex gap-10">
+          <h2 className="text-xs">Trending Artist</h2>
+          <div className="flex justify-center items-center">
+            <button className="text-[0.7rem]">See All</button>
           </div>
-        ))}
+        </div>
+        <div id="trending-artist-list">
+          {artistList.map((artis) => (
+            <div className="flex gap-10 mt-2 justify-center">
+              <div>
+                <Image
+                  src={profilePicture}
+                  alt="logo"
+                  width={30}
+                  height={50}
+                  className="rounded-full"
+                />
+              </div>
+              <h3>{artis.nombre}</h3>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
