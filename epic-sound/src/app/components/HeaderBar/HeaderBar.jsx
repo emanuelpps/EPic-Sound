@@ -5,7 +5,7 @@ import Bell from "./components/Bell";
 
 function HeaderBar() {
   return (
-    <div className="max-w-[90vw] min-w-[300px]  flex justify-between items-center">
+    <div className="max-w-[90vw] min-w-[300px] ml-24 pt-3 pb-2 flex justify-between items-center">
       <div className="flex flex-row gap-10 justify-start min-w-full">
         <BackFoward />
         <SearchBar />

@@ -38,16 +38,16 @@ function PopularTracks() {
   return (
     <>
       {apiResponse.isLoading ? (
-        <div className="flex flex-col justify-center items-center col-span-3 row-span-3 col-start-1 row-start-2">
+        <div className="flex flex-col justify-center items-center">
           <p>{apiResponse.response}</p>
         </div>
       ) : (
-        <div className="col-span-4 col-start-1 row-span-3 row-start-2 ml-5 bg-[#2d1b30] rounded-xl p-3">
+        <div className="col-span-4 row-start-3 ml-24 bg-[#2d1b30] rounded-xl p-3">
           <h2 className="text-lg fonnt-light text-[#F7D8D6]">Popular Tracks</h2>
-          <div className="flex flex-col gap-2 mt-2">
+          <div className="flex flex-col gap-2">
             {popularTracks?.map((track, index) => (
               <div
-                className="flex flex-row gap-14 justify-start items-center max-h-[fit-content] cursor-pointer hover:bg-[#272128] hover:shadow-md rounded-lg"
+                className="flex flex-row gap-14 justify-start items-center max-h-[fit-content] cursor-pointer hover:bg-[#2d1631] hover:shadow-md rounded-lg"
                 onClick={""}
               >
                 <p className="text-[0.6rem] text-[#b1a4b4]">{index + 1}</p>
@@ -55,7 +55,7 @@ function PopularTracks() {
                   <img
                     src={track.artwork["150x150"]}
                     alt="logo"
-                    width={50}
+                    width={45}
                     height={50}
                     className="rounded-xl"
                   />

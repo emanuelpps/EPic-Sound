@@ -31,7 +31,7 @@ function MiniPlayer() {
     },
   ]);
   return (
-    <div className="col-span-4 row-span-2 col-start-5 row-start-1 flex flex-col justify-center items-center">
+    <div className="row-span-2 row-start-2 justify-center items-center">
       <div className="flex justify-start w-[300px]">
         <h2 className="text-start">Now Playing</h2>
       </div>
