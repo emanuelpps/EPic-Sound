@@ -38,19 +38,19 @@ function PopularTracks() {
   return (
     <>
       {apiResponse.isLoading ? (
-        <div className="flex flex-col justify-center items-center ol-span-3 row-span-3 col-start-1 row-start-2">
+        <div className="flex flex-col justify-center items-center col-span-3 row-span-3 col-start-1 row-start-2">
           <p>{apiResponse.response}</p>
         </div>
       ) : (
-        <div className="col-span-3 row-span-3 col-start-1 row-start-2 o">
-          <h2 className="text-xs">Popular Tracks</h2>
+        <div className="col-span-4 col-start-1 row-span-3 row-start-2 ml-5 bg-[#2d1b30] rounded-xl p-3">
+          <h2 className="text-lg fonnt-light text-[#F7D8D6]">Popular Tracks</h2>
           <div className="flex flex-col gap-2 mt-2">
             {popularTracks?.map((track, index) => (
               <div
-                className="flex flex-row gap-10 justify-start items-center mb-2 max-h-[fit-content] cursor-pointer"
+                className="flex flex-row gap-14 justify-start items-center max-h-[fit-content] cursor-pointer hover:bg-[#272128] hover:shadow-md rounded-lg"
                 onClick={""}
               >
-                <p className="text-[0.6rem]">{index + 1}</p>
+                <p className="text-[0.6rem] text-[#b1a4b4]">{index + 1}</p>
                 {track.artwork && track.artwork["150x150"] && (
                   <img
                     src={track.artwork["150x150"]}
@@ -60,22 +60,21 @@ function PopularTracks() {
                     className="rounded-xl"
                   />
                 )}
-                <h2 className="flex text-[0.6rem] w-20">{track.title}</h2>
-                <p className="flex text-[0.6rem] w-20">{track.user?.name}</p>
-                <p className="flex text-[0.6rem] w-20">
+                <h2 className="flex text-[0.7rem] w-[200px] text-[#F7D8D6]">{track.title}</h2>
+                <p className="flex text-[0.6rem] w-[150px] text-[#b1a4b4]">{track.user?.name}</p>
+                <p className="flex text-[0.6rem] w-[100px]  text-[#b1a4b4]">
                   {formatDuration(track.duration)}
                 </p>
-                <p className="flex text-[0.6rem] w-20">
+                <p className="flex text-[0.6rem] w-[100px]  text-[#b1a4b4]">
                   {formatNumbers(track.play_count)}
                 </p>
                 <div className="flex flex-col">
-                  <FaHeart className="text-[0.7rem]" />
-                  <p className="flex text-[0.6rem]">
+                  <FaHeart className="text-[0.6rem]  text-[#b1a4b4]" />
+                  <p className="flex text-[0.6rem]  text-[#b1a4b4]">
                     {formatNumbers(track.favorite_count)}
                   </p>
                 </div>
-                <p className="flex text-[0.6rem]"></p>
-                <FaRegCirclePlay className="text-[1.5rem]" />
+                <FaRegCirclePlay className="text-[1.2rem] w-[100px]  text-[#b1a4b4]" />
               </div>
             ))}
           </div>

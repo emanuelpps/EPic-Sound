@@ -31,13 +31,13 @@ function MiniPlayer() {
     },
   ]);
   return (
-    <div className="col-span-2 row-span-2 col-start-4 row-start-1 flex flex-col justify-center items-center">
+    <div className="col-span-4 row-span-2 col-start-5 row-start-1 flex flex-col justify-center items-center">
       <div className="flex justify-start w-[300px]">
         <h2 className="text-start">Now Playing</h2>
       </div>
       <div
         className="backdrop-blur-[10px] backdrop-saturate-[38%] bg-[rgba(248,142,160,0.22)] border rounded-xl border-[rgba(255,255,255,0.125)]
-        -webkit-backdrop-filter: blur(10px) saturate(38%) h-[300px] w-[300px]"
+        -webkit-backdrop-filter: blur(10px) saturate(38%) h-[360px] w-[250px]"
       >
         <div className="flex justify-center items-center mt-5">
           <Image

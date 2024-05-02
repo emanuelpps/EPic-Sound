@@ -26,19 +26,18 @@ function MainContainer() {
     getTrendingThisMonth();
   }, []);
   return (
-    <div className="col-span-3 row-span-5 flex mt-0">
-      <div className="rounded-md relative">
+    <div className="col-span-4 col-start-1 row-span-5  ml-5 mb-5 rounded-md relative">
         {trendingThisMonth[0].artwork &&
           trendingThisMonth[0].artwork["1000x1000"] && (
             <img
               src={trendingThisMonth[0].artwork["1000x1000"]}
               alt="logo"
-              className="object-none h-56 w-[800px] rounded-xl"
+              className="object-cover rounded-xl w-[100%] h-[100%] absolute inset-0"
             />
           )}
         <div className="absolute inset-0 flex flex-col justify-center items-start ml-24">
-          <h3 className="text-white text-center">Track of the Month</h3>
-          <p className="text-white text-center">{trendingThisMonth[0].title}</p>
+          <h3 className="text-white text-center text-2xl  mb-2  shadow-5xl font-light">Track of the Month</h3>
+          <p className="text-white text-center text-3xl font-medium">{trendingThisMonth[0].title}</p>
           <p className="text-white text-center">
             {trendingThisMonth[0].user?.name}
           </p>
@@ -47,7 +46,6 @@ function MainContainer() {
           </button>
         </div>
       </div>
-    </div>
   );
 }
 
