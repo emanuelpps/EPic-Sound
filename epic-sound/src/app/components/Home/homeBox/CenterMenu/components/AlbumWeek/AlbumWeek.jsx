@@ -28,15 +28,15 @@ function AlbumWeek() {
   return (
     <>
       {apiResponse.isLoading ? (
-        <div className="flex flex-col justify-center items-center col-span-3 row-span-3 col-start-1 row-start-2">
+        <div className="flex flex-col justify-center items-center ">
           <p>{apiResponse.response}</p>
         </div>
       ) : (
-        <div className="flex flex-col col-span-4 col-start-1 row-start-1 pt-2  ml-5 bg-[#2d1b30] rounded-xl  h-[fit-content] p-3">
+        <div className="col-span-4 row-start-2 ml-24 bg-[#2d1b30] rounded-xl   p-3">
           <h2 className="text-lg fonnt-light text-[#F7D8D6]">Albums of the Week</h2>
           <div className="flex flex-row justify-center items-center flex-wrap gap-20 mt-2">
             {albumList.map((album) => (
-              <div key={album.id} className="cursor-pointer items-center hover:bg-[#272128] hover:shadow-md rounded-lg w-[150px] max-w-[150px] min-w-[150px] flex flex-col justify-center">
+              <div key={album.id} className="cursor-pointer items-center hover:bg-[#2d1631] hover:shadow-md rounded-lg w-[150px] max-w-[150px] min-w-[150px] flex flex-col justify-center">
                 {album.artwork && album.artwork["480x480"] && (
                   <img
                     src={album.artwork["480x480"]}

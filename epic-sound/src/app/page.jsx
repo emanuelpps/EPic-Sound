@@ -8,9 +8,7 @@ function HomePage() {
     <div>
       {login ? (
         // hacer un chequeo si esta logeado... mientras cargar un loading / si se esta logeado mostrar inicialmente la pantalla de start y luego redirijir a la home
-        <div className="">
-          <StartContainer/>
-        </div>
+        <StartContainer />
       ) : (
         <div>
           LOGIN /// mandar a pantalla de login si no tiene login enviar a

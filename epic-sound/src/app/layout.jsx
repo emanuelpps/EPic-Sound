@@ -14,15 +14,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.className}`}>
-        <main className="w-[100vw] max-h-screen pt-5 pb-5 flex justify-center items-center bg-[#a8787e] overflow-y-hidden">
-          <div className="grid w-[100vw] grid-rows-[60px_auto]  max-h-screen  backdrop-blur-[9px] backdrop-saturate-[200%] bg-[rgba(23,22,36,0.88)] -webkit-backdrop-filter: blur(9px) saturate(200%)">
-            <aside id="aside-container" className="w-20 row-span-5">
-              <AsideBar />
-            </aside>
-            <div id="header">
+        <main className="w-[100vw] max-h-[100vh] flex justify-center items-center bg-[#a8787e] overflow-hidden">
+          <div className="flex h-screen backdrop-blur-[9px] backdrop-saturate-[200%] bg-[rgba(23,22,36,0.88)] -webkit-backdrop-filter: blur(9px) saturate(200%)">
+            <AsideBar />
+            <div className="flex flex-col">
               <HeaderBar />
-            </div>
-            <div className="col-span-4 row-span-4 col-start-2 row-start-2">
               {children}
             </div>
           </div>

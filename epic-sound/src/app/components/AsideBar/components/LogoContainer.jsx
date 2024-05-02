@@ -14,7 +14,7 @@ function LogoContainer() {
       />
       <div className="flex justify-center items-center gap-1">
         <p className="text-center text-[0.7rem] text-[#F7D8D6]">EPic</p>
-        <p className="text-center text-[0.7rem] text-[#F96985]">Sound</p>
+        <p className="text-center text-[0.7rem] text-[#F96985]">sound</p>
       </div>
     </div>
   );
