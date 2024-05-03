@@ -7,9 +7,11 @@ import trendingTracks from "@/services/trendingTracks";
 import { FaHeart } from "react-icons/fa6";
 import formatNumbers from "@/lib/utils/formatNumers";
 import formatDuration from "@/lib/utils/formatDuration";
-//import { apiStore } from "@/store/apiStore";
+import trackHandler from "@/lib/functions/trackHandler";
+import { useTrackStore } from "@/store/trackStore";
 
 function PopularTracks() {
+  const { setTrack } = useTrackStore();
   //const [isLoading, setIsLoading] = useState(true);
   const [popularTracks, setPopularTracks] = useState([{}]);
   const [apiResponse, setApiResponse] = useState({
@@ -48,7 +50,7 @@ function PopularTracks() {
             {popularTracks?.map((track, index) => (
               <div
                 className="flex flex-row gap-14 justify-start items-center max-h-[fit-content] cursor-pointer hover:bg-[#2d1631] hover:shadow-md rounded-lg"
-                onClick={""}
+                onClick={() => setTrack(track)}
               >
                 <p className="text-[0.6rem] text-[#b1a4b4]">{index + 1}</p>
                 {track.artwork && track.artwork["150x150"] && (
@@ -60,8 +62,12 @@ function PopularTracks() {
                     className="rounded-xl"
                   />
                 )}
-                <h2 className="flex text-[0.7rem] w-[200px] text-[#F7D8D6]">{track.title}</h2>
-                <p className="flex text-[0.6rem] w-[150px] text-[#b1a4b4]">{track.user?.name}</p>
+                <h2 className="flex text-[0.7rem] w-[200px] text-[#F7D8D6]">
+                  {track.title}
+                </h2>
+                <p className="flex text-[0.6rem] w-[150px] text-[#b1a4b4]">
+                  {track.user?.name}
+                </p>
                 <p className="flex text-[0.6rem] w-[100px]  text-[#b1a4b4]">
                   {formatDuration(track.duration)}
                 </p>

@@ -10,6 +10,13 @@ function loading() {
         <p className="text-center text-[2rem] text-[#F7D8D6]">EPic</p>
         <p className="text-center text-[2rem] text-[#F96985]">sound</p>
       </div>
+      <div class="loadership_MPURR">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
       <p>loading</p>
     </div>
   );
