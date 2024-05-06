@@ -13,10 +13,12 @@ import { CgRepeat } from "react-icons/cg";
 import streamTrack from "@/services/streamTrack";
 import fetchTrackData from "@/services/getTrack";
 import { useTrackStore } from "@/store/trackStore";
+import { useAlbumStore } from "@/store/albumStore";
 import { Fira_Code } from "next/font/google";
 
 function MiniPlayer(props) {
   const { track } = useTrackStore();
+  const { getAlbumId } = useAlbumStore();
   const audioRef = useRef();
   const [isLiked, setIsLiked] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -61,15 +63,17 @@ function MiniPlayer(props) {
   return (
     <div
       className={`${
-        isPlaying ? "h-10" : "row-span-2 row-start-2"
-      } justify-center items-center`}
+        track ? "row-span-2 row-start-2 justify-center items-center" : "hidden"
+      }`}
     >
       <div className="flex justify-start w-[300px]">
-        <h2 className="text-start">Now Playing</h2>
+        {track ? <h2 className="text-start">Now Playing</h2> : <></>}
       </div>
       <div
-        className="backdrop-blur-[10px] backdrop-saturate-[38%] bg-[rgba(248,142,160,0.22)] border rounded-xl border-[rgba(255,255,255,0.125)]
-        -webkit-backdrop-filter: blur(10px) saturate(38%) h-[360px] w-[250px] flex flex-col justify-center items-center"
+        className={`backdrop-blur-[10px] backdrop-saturate-[38%] bg-[rgba(248,142,160,0.22)] border rounded-xl border-[rgba(255,255,255,0.125)]
+        -webkit-backdrop-filter: blur(10px) saturate(38%) ${
+          track ? "h-[360px] w-[250px]" : "pb-10"
+        }  flex flex-col justify-center items-center`}
       >
         <div className="flex justify-center items-center mt-5 w-full">
           {track?.artwork && track.artwork["480x480"] && (
@@ -91,16 +95,18 @@ function MiniPlayer(props) {
               </p>
             </div>
             <div className="flex flex-row w-full items-center justify-center gap-2">
-              <RiMenuAddFill />
+              <RiMenuAddFill
+                className={`${track ? "cursor-pointer" : "hidden"}`}
+              />
               {isLiked ? (
                 <RiHeart3Fill
                   onClick={() => setIsLiked(!isLiked)}
-                  className="cursor-pointer"
+                  className={`${track ? "cursor-pointer" : "hidden"}`}
                 />
               ) : (
                 <RiHeart3Line
                   onClick={() => setIsLiked(!isLiked)}
-                  className="cursor-pointer"
+                  className={`${track ? "cursor-pointer" : "hidden"}`}
                 />
               )}
             </div>

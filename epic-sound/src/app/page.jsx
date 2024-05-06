@@ -1,5 +1,5 @@
 "use client";
-import StartContainer from "@/app/components/Home/StartContainer";
+import StartContainer from "@/app/components/Home/page.jsx";
 import React, { useState } from "react";
 
 function HomePage() {
