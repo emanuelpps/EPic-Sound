@@ -16,7 +16,6 @@ function TrendingPlaylist() {
         const response = await getNewTrendingPlaylist();
         setTrendingPlaylist(response.data.slice(0, 5));
         setApiResponse({ isLoading: false });
-        console.log("tredsssniung", response.data);
       } catch (error) {
         console.log("error", error);
         setApiResponse({ response: error.message });

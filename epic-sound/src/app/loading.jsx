@@ -17,7 +17,7 @@ function loading() {
         <div></div>
         <div></div>
       </div>
-      <p>loading</p>
+      <p>Loading...</p>
     </div>
   );
 }

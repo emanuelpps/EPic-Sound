@@ -13,6 +13,7 @@ import { CgRepeat } from "react-icons/cg";
 import streamTrack from "@/services/streamTrack";
 import fetchTrackData from "@/services/getTrack";
 import { useTrackStore } from "@/store/trackStore";
+import { Fira_Code } from "next/font/google";
 
 function MiniPlayer(props) {
   const { track } = useTrackStore();
@@ -20,31 +21,49 @@ function MiniPlayer(props) {
   const [isLiked, setIsLiked] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackData, setTrackData] = useState({});
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   const togglePlay = () => {
     if (isPlaying) {
-      audioRef.current.pause();
+      audioRef.current?.pause();
     } else {
-      audioRef.current.play();
+      audioRef.current?.play();
     }
     setIsPlaying(!isPlaying);
   };
 
   useEffect(() => {
-    const streamTrack = async () => {
-      try {
-        const response = await streamTrack(track?.id);
-        setTrackData(response);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    streamTrack();
-  }, [track]);
+    if (track?.id) {
+      (async () => {
+        try {
+          const response = await streamTrack(track.id);
+          setTrackData(response);
+          if (audioRef.current.src) {
+            togglePlay();
+            setIsFirstLoad(false);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      })();
+    }
+  }, [track?.id, isFirstLoad]);
 
-  console.log("trackdata", trackData?.stream_url);
+  console.log("trackadataAaa", trackData);
+
+  useEffect(() => {
+    if (trackData) {
+      audioRef.current.src = trackData;
+      togglePlay();
+    }
+  }, [trackData]);
+
   return (
-    <div className="row-span-2 row-start-2 justify-center items-center">
+    <div
+      className={`${
+        isPlaying ? "h-10" : "row-span-2 row-start-2"
+      } justify-center items-center`}
+    >
       <div className="flex justify-start w-[300px]">
         <h2 className="text-start">Now Playing</h2>
       </div>
@@ -97,7 +116,7 @@ function MiniPlayer(props) {
                   aria-valuemin="0"
                   aria-valuemax="100"
                 >
-                  <audio ref={audioRef} src={trackData?.stream_url} />
+                  <audio ref={audioRef} src={trackData} />
                 </div>
                 <div className="flex justify-between">
                   <p className="text-[0.6rem]">2:30</p>

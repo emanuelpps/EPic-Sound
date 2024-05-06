@@ -16,7 +16,6 @@ function PopularTracks() {
   const [popularTracks, setPopularTracks] = useState([{}]);
   const [apiResponse, setApiResponse] = useState({
     isLoading: true,
-    response: "Loading...",
   });
 
   useEffect(() => {
@@ -40,8 +39,21 @@ function PopularTracks() {
   return (
     <>
       {apiResponse.isLoading ? (
-        <div className="flex flex-col justify-center items-center">
-          <p>{apiResponse.response}</p>
+        <div className="col-span-4 row-start-3 ml-24 bg-[#2d1b30] rounded-xl p-3">
+          <div className="flex flex-col gap-2">
+            <div className="flex flex-row gap-14 justify-start items-center max-h-[fit-content] cursor-pointer hover:bg-[#2d1631] hover:shadow-md rounded-lg">
+              <p className="text-[0.6rem] text-[#b1a4b4]"></p>
+              <h2 className="flex text-[0.7rem] w-[200px] text-[#F7D8D6]"></h2>
+              <p className="flex text-[0.6rem] w-[150px] text-[#b1a4b4]"></p>
+              <p className="flex text-[0.6rem] w-[100px]  text-[#b1a4b4]"></p>
+              <p className="flex text-[0.6rem] w-[100px]  text-[#b1a4b4]"></p>
+              <div className="flex flex-col">
+                <div className="text-[0.6rem]  text-[#b1a4b4]" />
+                <p className="flex text-[0.6rem]  text-[#b1a4b4]"></p>
+              </div>
+              <div className="text-[1.2rem] w-[100px]  text-[#b1a4b4]" />
+            </div>
+          </div>
         </div>
       ) : (
         <div className="col-span-4 row-start-3 ml-24 bg-[#2d1b30] rounded-xl p-3">

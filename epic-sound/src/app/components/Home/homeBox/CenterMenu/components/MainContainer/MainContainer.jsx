@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 //import coverImage from "../../../../../../../../public/assets/images/big-dollar-sign.jpg";
 import trendingMonth from "@/services/trendingThisMonth";
+import { useTrackStore } from "@/store/trackStore";
 
 function MainContainer() {
+  const { setTrack } = useTrackStore();
   const [trendingThisMonth, setTrendingThisMonth] = useState([{}]);
   const [apiResponse, setApiResponse] = useState({
     isLoading: true,
-    response: "Loading...",
   });
 
   useEffect(() => {
@@ -63,7 +64,10 @@ function MainContainer() {
         >
           {trendingThisMonth[0].user?.name}
         </p>
-        <button className="font-semibold bg-[#F88EA0] hover:bg-[#F96985] rounded-lg text-[#171624] px-5 py-2 mt-3 border border-solid border-[#F96985]">
+        <button
+          onClick={() => setTrack(trendingThisMonth[0])}
+          className="font-semibold bg-[#F88EA0] hover:bg-[#F96985] rounded-lg text-[#171624] px-5 py-2 mt-3 border border-solid border-[#F96985]"
+        >
           Listen Track
         </button>
       </div>
