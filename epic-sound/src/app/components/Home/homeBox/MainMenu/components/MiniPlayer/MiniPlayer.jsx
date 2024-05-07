@@ -113,9 +113,9 @@ function MiniPlayer(props) {
           </div>
           <div id="player-icons" className="flex flex-col w-full">
             <div id="progress-bar" className="mt-2">
-              <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+              <div className="w-full bg-[rgba(255,255,255,0.125)] rounded-full h-2.5 ">
                 <div
-                  className="bg-blue-600 h-2.5 rounded-full"
+                  className="bg-[#F96985] h-2.5 rounded-full"
                   style={{ width: "45%" }}
                   role="progressbar"
                   aria-valuenow="75"
