@@ -14,14 +14,15 @@ import streamTrack from "@/services/streamTrack";
 import fetchTrackData from "@/services/getTrack";
 import { useTrackStore } from "@/store/trackStore";
 import { useAlbumStore } from "@/store/albumStore";
+import { useIsPlayingTrackStore } from "@/store/isPlayingTrackStore";
 import { Fira_Code } from "next/font/google";
 
 function MiniPlayer(props) {
   const { track } = useTrackStore();
   const { getAlbumId } = useAlbumStore();
+  const { setIsPlaying, isPlaying } = useIsPlayingTrackStore();
   const audioRef = useRef();
   const [isLiked, setIsLiked] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [trackData, setTrackData] = useState({});
   const [isFirstLoad, setIsFirstLoad] = useState(true);
 
