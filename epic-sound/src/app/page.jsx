@@ -5,7 +5,7 @@ import React, { useState } from "react";
 function HomePage() {
   const [login, setLogin] = useState(true);
   return (
-    <div>
+    <div className="w-screen h-screen">
       {login ? (
         // hacer un chequeo si esta logeado... mientras cargar un loading / si se esta logeado mostrar inicialmente la pantalla de start y luego redirijir a la home
         <StartContainer />

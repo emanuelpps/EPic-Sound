@@ -16,7 +16,7 @@ function AlbumWeek() {
     const getTrendingAlbums = async () => {
       try {
         const response = await trendingAlbums();
-        setAlbumList(response.data.slice(0, 5));
+        setAlbumList(response.data.slice(0, 6));
         setApiResponse({ isLoading: false });
         console.log("response", response.data);
       } catch (error) {
@@ -35,11 +35,11 @@ console.log("albumList", albumList);
           <p>{apiResponse.response}</p>
         </div>
       ) : (
-        <div className="col-span-4 row-start-2 ml-24 bg-[#2d1b30] rounded-xl   p-3">
+        <div className="col-span-4 row-start-2 ml-24 bg-[#2d1b30] rounded-xl p-3">
           <h2 className="text-lg fonnt-light text-[#F7D8D6]">
             Albums of the Week
           </h2>
-          <div className="flex flex-row justify-center items-center flex-wrap gap-20 mt-2">
+          <div className="flex flex-row justify-center items-center flex-wrap gap-10 mt-2">
             {albumList.map((album) => (
               <div
                 onClick={() => setAlbum(album.id)}
