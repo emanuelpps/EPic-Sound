@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import profilePicture from "../../../../../../../../public/assets/images/photo-1570295999919-56ceb5ecca61.avif";
 import trendingAlbums from "@/services/trendingAlbums";
 import { useAlbumStore } from "@/store/albumStore";
+import { usePlaylistStore } from "@/store/playlistStore";
 
 function AlbumWeek() {
+  const { setPlaylist } = usePlaylistStore();
   const { setAlbum } = useAlbumStore();
   const [albumList, setAlbumList] = useState([{}]);
   const [apiResponse, setApiResponse] = useState({
@@ -36,13 +36,13 @@ console.log("albumList", albumList);
         </div>
       ) : (
         <div className="col-span-4 row-start-2 ml-24 bg-[#2d1b30] rounded-xl p-3">
-          <h2 className="text-lg fonnt-light text-[#F7D8D6]">
+          <h2 className="text-lg font-light text-[#F7D8D6]">
             Albums of the Week
           </h2>
           <div className="flex flex-row justify-center items-center flex-wrap gap-10 mt-2">
             {albumList.map((album) => (
               <div
-                onClick={() => setAlbum(album.id)}
+                onClick={() => {setAlbum(album.id); setPlaylist(album.id)}}
                 key={album.id}
                 className="cursor-pointer items-center hover:bg-[#2d1631] hover:shadow-md rounded-lg w-[150px] max-w-[150px] min-w-[150px] flex flex-col justify-center"
               >

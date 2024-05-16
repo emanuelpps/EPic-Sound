@@ -30,7 +30,7 @@ function TrendingPlaylist() {
     <div className="row-span-1 flex w-[250px] flex-col bg-[#2d1b30] rounded-xl mr-5 p-2">
       <div className="">
         <div id="trending-artist-title" className="flex gap-10">
-          <h2 className="text-lg fonnt-light text-[#F7D8D6]">
+          <h2 className="text-lg font-light text-[#F7D8D6]">
             Trending Playlist
           </h2>
           <div className="flex justify-center items-center">

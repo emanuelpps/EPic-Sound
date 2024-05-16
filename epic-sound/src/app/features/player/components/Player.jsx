@@ -1,50 +1,48 @@
 import React, { useRef } from "react";
 import { useTrackStore } from "@/store/trackStore";
-import { RiMenuAddFill } from "react-icons/ri";
-import { RiHeart3Line } from "react-icons/ri";
-import { RiHeart3Fill } from "react-icons/ri";
+import { RiMenuAddFill, RiHeart3Fill, RiHeart3Line } from "react-icons/ri";
 import { IoShuffleSharp } from "react-icons/io5";
-import { CgPlayButtonO } from "react-icons/cg";
-import { CgPlayPauseO } from "react-icons/cg";
-import { CgPlayTrackNext } from "react-icons/cg";
-import { CgPlayTrackPrev } from "react-icons/cg";
-import { CgRepeat } from "react-icons/cg";
+import {
+  CgPlayButtonO,
+  CgPlayPauseO,
+  CgPlayTrackNext,
+  CgPlayTrackPrev,
+  CgRepeat,
+} from "react-icons/cg";
 import { useIsPlayingTrackStore } from "@/store/isPlayingTrackStore";
 import { togglePlay } from "@/lib/functions/togglePlay";
 import { useAudioRefStore } from "@/store/audioRef";
 import { toggleRepeat } from "@/lib/functions/toggleRepeat";
 import { useIsRepeatTrackStore } from "@/store/isRepeatTrackStore";
+import { usePlaylistStore } from "@/store/playlistStore";
 import checkSeekBar from "@/lib/functions/checkSeekBar";
 function Player() {
+  const { playlist } = usePlaylistStore();
   const seekBarRef = useRef();
   const { isRepeating, setIsRepeating } = useIsRepeatTrackStore();
   const { audioRef } = useAudioRefStore();
   const { setIsPlaying, isPlaying } = useIsPlayingTrackStore();
-  const {
-    track,
-    progress,
-    setProgress,
-    setLeftTime,
-    setCurrentTime,
-    leftTime,
-    currentTime,
-  } = useTrackStore();
+  const { track, progress, leftTime, currentTime } = useTrackStore();
   console.log("track", track);
+  console.log("playlist", playlist);
   return (
     <div
       id="player-container"
-      className="flex flex-col justify-center items-center row-start-1 ml-24 bg-[#2d1b30] rounded-xl"
+      className={`flex flex-col ${
+        !playlist === null ? "" : "justify-center"
+      } items-center ml-24 bg-[#2d1b30] rounded-xl`}
     >
-      <div id="track-image-container">
+      <div id="track-image-container" className={`${playlist ? "mt-1" : ""}`}>
         <img
           src={track?.artwork["1000x1000"]}
-          className="rounded-xl w-[250px]"
+          className={`rounded-xl `}
+          style={playlist ? { width: "130px" } : { width: "350px" }}
         />
       </div>
       <div id="player-data-contaier" className="flex w-full justify-evenly">
         <div>
-          <h1>{track?.title}</h1>
-          <h2>{track?.user.name}</h2>
+          <h1 className={`${playlist ? "text-[0.8rem]" : "text-[1rem]"}`}>{track?.title}</h1>
+          <h2 className={`${playlist ? "text-[0.8rem]" : "text-[1rem]"}`}>{track?.user.name}</h2>
         </div>
         <div className="flex gap-5">
           <RiMenuAddFill />
@@ -52,9 +50,9 @@ function Player() {
         </div>
       </div>
       <div className="flex flex-col w-full justify-center items-center">
-        <div id="progress-bar" className="mt-2">
+        <div id="progress-bar" className="mt-1">
           <div
-            className="w-[800px] bg-[rgba(255,255,255,0.125)] rounded-full h-2.5 mb-10"
+            className={`${playlist ? "w-[650px]" : "w-[800px]"} bg-[rgba(255,255,255,0.125)] rounded-full h-2.5 mb-5`}
             onClick={(e) => checkSeekBar(e, seekBarRef, audioRef)}
             ref={seekBarRef}
           >
@@ -67,12 +65,12 @@ function Player() {
               aria-valuemax="100"
             ></div>
             <div className="flex justify-between">
-              <p className="text-[0.6rem]">{currentTime}</p>
-              <p className="text-[0.6rem]">{leftTime}</p>
+              <p className="text-[0.6rem] mt-2">{currentTime}</p>
+              <p className="text-[0.6rem] mt-2">{leftTime}</p>
             </div>
           </div>
         </div>
-        <div id="player-button-container" className="flex gap-5">
+        <div id="player-button-container" className={`flex gap-5 ${playlist ? "mb-1" : ""}`}>
           <IoShuffleSharp className="text-[2rem] cursor-pointer hover:text-[#F96985]" />
           <CgPlayTrackPrev className="text-[2rem] cursor-pointer hover:text-[#F96985]" />
           {isPlaying ? (

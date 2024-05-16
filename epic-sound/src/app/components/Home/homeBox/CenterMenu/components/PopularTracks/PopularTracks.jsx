@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import profilePicture from "../../../../../../../../public/assets/images/photo-1570295999919-56ceb5ecca61.avif";
 import { FaRegCirclePlay } from "react-icons/fa6";
-import Image from "next/image";
 import trendingTracks from "@/services/trendingTracks";
 import { FaHeart } from "react-icons/fa6";
 import formatNumbers from "@/lib/utils/formatNumers";
@@ -43,7 +42,7 @@ function PopularTracks() {
         </div>
       ) : (
         <div className="col-span-4 row-start-3 ml-24 bg-[#2d1b30] rounded-xl p-3">
-          <h2 className="text-lg fonnt-light text-[#F7D8D6]">Popular Tracks</h2>
+          <h2 className="text-lg font-light text-[#F7D8D6]">Popular Tracks</h2>
           <div className="flex flex-col gap-2">
             {popularTracks?.map((track, index) => (
               <div
