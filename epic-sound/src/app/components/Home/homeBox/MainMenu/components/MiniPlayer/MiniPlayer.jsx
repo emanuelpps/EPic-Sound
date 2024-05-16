@@ -16,12 +16,25 @@ import { useTrackStore } from "@/store/trackStore";
 import { useAlbumStore } from "@/store/albumStore";
 import { useIsPlayingTrackStore } from "@/store/isPlayingTrackStore";
 import { Fira_Code } from "next/font/google";
+import seekBarFormat from "@/lib/utils/seekBarFormat";
+import formatCurrentTime from "@/lib/utils/formatCurrentTime";
+import formatLeftTime from "@/lib/utils/formatLeftTime";
+import checkSeekBar from "@/lib/functions/checkSeekBar";
 
 function MiniPlayer(props) {
-  const { track } = useTrackStore();
+  const {
+    track,
+    progress,
+    setProgress,
+    leftTime,
+    setCurrentTime,
+    currentTime,
+    setLeftTime,
+  } = useTrackStore();
   const { getAlbumId } = useAlbumStore();
   const { setIsPlaying, isPlaying } = useIsPlayingTrackStore();
   const audioRef = useRef();
+  const seekBarRef = useRef();
   const [isLiked, setIsLiked] = useState(false);
   const [trackData, setTrackData] = useState({});
   const [isFirstLoad, setIsFirstLoad] = useState(true);
@@ -60,6 +73,15 @@ function MiniPlayer(props) {
       togglePlay();
     }
   }, [trackData]);
+
+  const onPlaying = () => {
+    const { duration, currentTime } = audioRef.current;
+    setProgress(seekBarFormat(duration, currentTime));
+    setCurrentTime(formatCurrentTime(currentTime, duration));
+    setLeftTime(formatLeftTime(duration, currentTime));
+  };
+
+  console.log("progress", audioRef);
 
   return (
     <div
@@ -114,20 +136,25 @@ function MiniPlayer(props) {
           </div>
           <div id="player-icons" className="flex flex-col w-full">
             <div id="progress-bar" className="mt-2">
-              <div className="w-full bg-[rgba(255,255,255,0.125)] rounded-full h-2.5 ">
+              <div
+                className="w-full bg-[rgba(255,255,255,0.125)] rounded-full h-2.5 "
+                onClick={(e) => checkSeekBar(e, seekBarRef, audioRef)}
+                ref={seekBarRef}
+              >
                 <div
                   className="bg-[#F96985] h-2.5 rounded-full"
-                  style={{ width: "45%" }}
                   role="progressbar"
-                  aria-valuenow="75"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
+                  style={{ width: `${progress}%` }}
                 >
-                  <audio ref={audioRef} src={trackData} />
+                  <audio
+                    ref={audioRef}
+                    src={trackData}
+                    onTimeUpdate={onPlaying}
+                  />
                 </div>
                 <div className="flex justify-between">
-                  <p className="text-[0.6rem]">2:30</p>
-                  <p className="text-[0.6rem]">4:30</p>
+                  <p className="text-[0.6rem]">{currentTime}</p>
+                  <p className="text-[0.6rem]">{leftTime}</p>
                 </div>
               </div>
             </div>

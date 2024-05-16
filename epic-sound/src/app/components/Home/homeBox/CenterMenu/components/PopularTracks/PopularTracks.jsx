@@ -7,7 +7,6 @@ import trendingTracks from "@/services/trendingTracks";
 import { FaHeart } from "react-icons/fa6";
 import formatNumbers from "@/lib/utils/formatNumers";
 import formatDuration from "@/lib/utils/formatDuration";
-import trackHandler from "@/lib/functions/trackHandler";
 import { useTrackStore } from "@/store/trackStore";
 
 function PopularTracks() {
