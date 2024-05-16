@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useTrackStore } from "@/store/trackStore";
 import { RiMenuAddFill } from "react-icons/ri";
 import { RiHeart3Line } from "react-icons/ri";
@@ -10,10 +10,25 @@ import { CgPlayTrackNext } from "react-icons/cg";
 import { CgPlayTrackPrev } from "react-icons/cg";
 import { CgRepeat } from "react-icons/cg";
 import { useIsPlayingTrackStore } from "@/store/isPlayingTrackStore";
-
+import { togglePlay } from "@/lib/functions/togglePlay";
+import { useAudioRefStore } from "@/store/audioRef";
+import { toggleRepeat } from "@/lib/functions/toggleRepeat";
+import { useIsRepeatTrackStore } from "@/store/isRepeatTrackStore";
+import checkSeekBar from "@/lib/functions/checkSeekBar";
 function Player() {
+  const seekBarRef = useRef();
+  const { isRepeating, setIsRepeating } = useIsRepeatTrackStore();
+  const { audioRef } = useAudioRefStore();
   const { setIsPlaying, isPlaying } = useIsPlayingTrackStore();
-  const { track } = useTrackStore();
+  const {
+    track,
+    progress,
+    setProgress,
+    setLeftTime,
+    setCurrentTime,
+    leftTime,
+    currentTime,
+  } = useTrackStore();
   console.log("track", track);
   return (
     <div
@@ -38,20 +53,22 @@ function Player() {
       </div>
       <div className="flex flex-col w-full justify-center items-center">
         <div id="progress-bar" className="mt-2">
-          <div className="w-[800px] bg-[rgba(255,255,255,0.125)] rounded-full h-2.5 mb-10">
+          <div
+            className="w-[800px] bg-[rgba(255,255,255,0.125)] rounded-full h-2.5 mb-10"
+            onClick={(e) => checkSeekBar(e, seekBarRef, audioRef)}
+            ref={seekBarRef}
+          >
             <div
               className="bg-[#F96985] h-2.5 rounded-full"
-              style={{ width: "45%" }}
+              style={{ width: `${progress}%` }}
               role="progressbar"
               aria-valuenow="75"
               aria-valuemin="0"
               aria-valuemax="100"
-            >
-              {/*<audio ref={audioRef} src={trackData} />*/}
-            </div>
+            ></div>
             <div className="flex justify-between">
-              <p className="text-[0.6rem]">2:30</p>
-              <p className="text-[0.6rem]">4:30</p>
+              <p className="text-[0.6rem]">{currentTime}</p>
+              <p className="text-[0.6rem]">{leftTime}</p>
             </div>
           </div>
         </div>
@@ -60,17 +77,22 @@ function Player() {
           <CgPlayTrackPrev className="text-[2rem] cursor-pointer hover:text-[#F96985]" />
           {isPlaying ? (
             <CgPlayPauseO
-              onClick={() => setIsPlaying(!isPlaying)}
+              onClick={() => togglePlay(audioRef, setIsPlaying, isPlaying)}
               className="text-[2rem] cursor-pointer hover:text-[#F96985]"
             />
           ) : (
             <CgPlayButtonO
-              onClick={() => setIsPlaying(!isPlaying)}
+              onClick={() => togglePlay(audioRef, setIsPlaying, isPlaying)}
               className="text-[2rem] cursor-pointer hover:text-[#F96985]"
             />
           )}
           <CgPlayTrackNext className="text-[2rem] cursor-pointer hover:text-[#F96985]" />
-          <CgRepeat className="text-[2rem] cursor-pointer hover:text-[#F96985]" />
+          <CgRepeat
+            className={`text-[2rem] cursor-pointer hover:text-[#F96985] ${
+              isRepeating ? "text-[#F96985]" : ""
+            }`}
+            onClick={() => toggleRepeat(audioRef, setIsRepeating, isRepeating)}
+          />
         </div>
       </div>
     </div>
