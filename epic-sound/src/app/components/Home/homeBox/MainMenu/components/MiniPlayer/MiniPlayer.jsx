@@ -1,21 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
-import profilePicture from "../../../../../../../../public/assets/images/photo-1570295999919-56ceb5ecca61.avif";
-import Image from "next/image";
-import { RiMenuAddFill } from "react-icons/ri";
-import { RiHeart3Line } from "react-icons/ri";
-import { RiHeart3Fill } from "react-icons/ri";
+import { RiMenuAddFill, RiHeart3Fill, RiHeart3Line } from "react-icons/ri";
 import { IoShuffleSharp } from "react-icons/io5";
-import { CgPlayButtonO } from "react-icons/cg";
-import { CgPlayPauseO } from "react-icons/cg";
-import { CgPlayTrackNext } from "react-icons/cg";
-import { CgPlayTrackPrev } from "react-icons/cg";
+import {
+  CgPlayButtonO,
+  CgPlayPauseO,
+  CgPlayTrackNext,
+  CgPlayTrackPrev,
+} from "react-icons/cg";
 import { CgRepeat } from "react-icons/cg";
 import streamTrack from "@/services/streamTrack";
-import fetchTrackData from "@/services/getTrack";
 import { useTrackStore } from "@/store/trackStore";
 import { useAlbumStore } from "@/store/albumStore";
 import { useIsPlayingTrackStore } from "@/store/isPlayingTrackStore";
-import { Fira_Code } from "next/font/google";
 import seekBarFormat from "@/lib/utils/seekBarFormat";
 import formatCurrentTime from "@/lib/utils/formatCurrentTime";
 import formatLeftTime from "@/lib/utils/formatLeftTime";
@@ -24,8 +20,10 @@ import { togglePlay } from "@/lib/functions/togglePlay";
 import { useAudioRefStore } from "@/store/audioRef";
 import { useIsRepeatTrackStore } from "@/store/isRepeatTrackStore";
 import { toggleRepeat } from "@/lib/functions/toggleRepeat";
+import { usePageSelectionStore } from "@/store/pageSelectionStore";
 
 function MiniPlayer(props) {
+  const { page } = usePageSelectionStore();
   const { setIsRepeating, isRepeating } = useIsRepeatTrackStore();
   const { setAudioRef } = useAudioRefStore();
   const {
@@ -64,6 +62,7 @@ function MiniPlayer(props) {
   }, [track?.id, isFirstLoad]);
 
   console.log("trackadataAaa", trackData);
+  console.log("pageSelection", page);
 
   useEffect(() => {
     if (trackData) {
@@ -84,7 +83,7 @@ function MiniPlayer(props) {
   return (
     <div
       className={`${
-        track ? "row-span-2 row-start-2 justify-center items-center" : "hidden"
+        track && page !== 2 ? "row-span-2 row-start-2 justify-center items-center" : "hidden"
       }`}
     >
       <div className="flex justify-start w-[300px]">
@@ -188,8 +187,12 @@ function MiniPlayer(props) {
               </div>
               <div>
                 <CgRepeat
-                  className={` cursor-pointer hover:text-[#F96985] text-xl ${isRepeating ? "text-[#F96985]" : ""}`}
-                  onClick={() => toggleRepeat(audioRef,setIsRepeating, isRepeating)}
+                  className={` cursor-pointer hover:text-[#F96985] text-xl ${
+                    isRepeating ? "text-[#F96985]" : ""
+                  }`}
+                  onClick={() =>
+                    toggleRepeat(audioRef, setIsRepeating, isRepeating)
+                  }
                 />
               </div>
             </div>
