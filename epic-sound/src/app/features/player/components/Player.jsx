@@ -36,7 +36,7 @@ function Player() {
         <img
           src={track?.artwork["1000x1000"]}
           className={`rounded-xl `}
-          style={playlist ? { width: "150px" } : { width: "350px" }}
+          style={playlist ? { width: "180px" } : { width: "350px" }}
         />
       </div>
       <div id="player-data-contaier">

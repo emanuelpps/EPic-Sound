@@ -10,7 +10,6 @@ import { useTrackStore } from "@/store/trackStore";
 
 function PopularTracks() {
   const { setTrack } = useTrackStore();
-  //const [isLoading, setIsLoading] = useState(true);
   const [popularTracks, setPopularTracks] = useState([{}]);
   const [apiResponse, setApiResponse] = useState({
     isLoading: true,

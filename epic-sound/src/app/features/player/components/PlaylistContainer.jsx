@@ -3,7 +3,9 @@ import { usePlaylistStore } from "@/store/playlistStore";
 import { usePlaylistTracksStore } from "@/store/playlistTrackStore";
 import formatDuration from "@/lib/utils/formatDuration";
 import { CgChevronDoubleDownR } from "react-icons/cg";
+import { useTrackStore } from "@/store/trackStore";
 function PlaylistContainer() {
+  const { setTrack } = useTrackStore();
   const { setPlaylistTracks, playlistTracks } = usePlaylistTracksStore();
   const { playlist } = usePlaylistStore();
 
@@ -23,16 +25,10 @@ function PlaylistContainer() {
             <h1 className="text-lg font-light text-[#F7D8D6]">Playlist</h1>
           </div>
           <div className="justify-end items-center pr-10">
-            <CgChevronDoubleDownR className="text-[1.5rem] text-[#F7D8D6] cursor-pointer"/>
+            <CgChevronDoubleDownR className="text-[1.5rem] text-[#F7D8D6] cursor-pointer" />
           </div>
         </div>
         <div id="playlist-header" className="flex items-center ml-5 gap-5">
-          <div id="playlist-image">
-            <img
-              src={playlist.data[0].artwork["150x150"]}
-              className="w-[80px] rounded-xl"
-            />
-          </div>
           <div id="playlist-title">
             <h2 className="text-md font-light text-[#F7D8D6]">
               {playlist?.data[0].playlist_name}
@@ -48,7 +44,7 @@ function PlaylistContainer() {
             className="flex flex-col bg-[#161526] m-5 rounded-lg p-2 overflow-y-auto max-h-[300px]"
           >
             {playlistTracks?.data?.map((track, index) => (
-              <div className="cursor-pointer">
+              <div className="cursor-pointer" onClick={() => setTrack(track)}>
                 <div
                   id="playlist-songs-item"
                   className="flex justify-start gap-10 items-center h-7 hover:bg-[#2d1631] hover:shadow-md rounded opacity-500"
