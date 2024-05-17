@@ -11,8 +11,8 @@ function PlayerLayout() {
   return (
     <div
       className={`grid grid-cols-1 ${
-        playlist ? "grid-rows-2" : "h-full"
-      } gap-4`}
+        playlist ? "" : "h-full"
+      } gap-4 max-h-[100vh] min-h-[100vh] h-[100vh]`}
     >
       <Player />
       {playlist || album ? <PlaylistContainer /> : null}
