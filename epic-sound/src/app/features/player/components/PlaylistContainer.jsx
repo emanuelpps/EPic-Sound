@@ -13,7 +13,9 @@ function PlaylistContainer() {
   const { playlist } = usePlaylistStore();
 
   useEffect(() => {
-    setPlaylistTracks(playlist.data[0].id);
+    if (playlist) {
+      setPlaylistTracks(playlist.data[0].id);
+    }
   }, [playlist.data[0].id]);
 
   console.log("playlistTracks", playlistTracks);
@@ -47,7 +49,7 @@ function PlaylistContainer() {
         <div id="playlist-songs">
           <div
             id="playlist-songs-container"
-            className="flex flex-col bg-[#161526] m-5 rounded-lg p-2 overflow-y-auto max-h-[300px]"
+            className="flex flex-col bg-[#161526] m-5 rounded-lg p-2 overflow-y-auto max-h-[300px] min-h-[300px] "
           >
             {playlistTracks?.data?.map((track, index) => (
               <div className="cursor-pointer" onClick={() => setTrack(track)}>

@@ -17,14 +17,18 @@ import { useIsRepeatTrackStore } from "@/store/isRepeatTrackStore";
 import checkSeekBar from "@/lib/functions/checkSeekBar";
 import { useIsPlaylistShownStore } from "@/store/isPlaylistShown";
 import { CgChevronDoubleUpR } from "react-icons/cg";
+import { usePlaylistStore } from "@/store/playlistStore";
 
 function Player() {
+  const { playlist } = usePlaylistStore();
   const { isPlaylistShown, setIsPlaylistShown } = useIsPlaylistShownStore();
   const seekBarRef = useRef();
   const { isRepeating, setIsRepeating } = useIsRepeatTrackStore();
   const { audioRef } = useAudioRefStore();
   const { setIsPlaying, isPlaying } = useIsPlayingTrackStore();
   const { track, progress, leftTime, currentTime } = useTrackStore();
+
+  console.log("playlistshonw", isPlaylistShown);
   return (
     <div
       id="player-container"
@@ -120,7 +124,7 @@ function Player() {
           </div>
         </div>
       </div>
-      {!isPlaylistShown && (
+      {playlist && !isPlaylistShown ? (
         <div
           id="playlist-show-button-container"
           className="flex justify-between w-full"
@@ -135,7 +139,7 @@ function Player() {
             />
           </div>
         </div>
-      )}
+      ) : null}
     </div>
   );
 }
