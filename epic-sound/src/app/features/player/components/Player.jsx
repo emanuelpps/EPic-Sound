@@ -14,29 +14,32 @@ import { togglePlay } from "@/lib/functions/togglePlay";
 import { useAudioRefStore } from "@/store/audioRef";
 import { toggleRepeat } from "@/lib/functions/toggleRepeat";
 import { useIsRepeatTrackStore } from "@/store/isRepeatTrackStore";
-import { usePlaylistStore } from "@/store/playlistStore";
 import checkSeekBar from "@/lib/functions/checkSeekBar";
+import { useIsPlaylistShownStore } from "@/store/isPlaylistShown";
+import { CgChevronDoubleUpR } from "react-icons/cg";
+
 function Player() {
-  const { playlist } = usePlaylistStore();
+  const { isPlaylistShown, setIsPlaylistShown } = useIsPlaylistShownStore();
   const seekBarRef = useRef();
   const { isRepeating, setIsRepeating } = useIsRepeatTrackStore();
   const { audioRef } = useAudioRefStore();
   const { setIsPlaying, isPlaying } = useIsPlayingTrackStore();
   const { track, progress, leftTime, currentTime } = useTrackStore();
-  console.log("track", track);
-  console.log("playlist", playlist);
   return (
     <div
       id="player-container"
       className={`flex gap-12 ${
-        !playlist === null ? "flex-col" : ""
+        isPlaylistShown ? "" : "flex-col"
       } justify-center items-center ml-24 bg-[#2d1b30] rounded-xl h-full`}
     >
-      <div id="track-image-container" className={`${playlist ? "mt-1" : ""}`}>
+      <div
+        id="track-image-container"
+        className={`${isPlaylistShown ? "" : "mt-1"}`}
+      >
         <img
           src={track?.artwork["1000x1000"]}
           className={`rounded-xl `}
-          style={playlist ? { width: "180px" } : { width: "350px" }}
+          style={isPlaylistShown ? { width: "150px" } : { width: "350px" }}
         />
       </div>
       <div id="player-data-contaier">
@@ -44,14 +47,14 @@ function Player() {
           <div className="flex gap-14">
             <h1
               className={`${
-                playlist ? "text-[0.8rem]" : "text-[1rem] "
+                isPlaylistShown ? "text-[0.8rem]" : "text-[1rem] "
               } font-light text-[#F7D8D6]`}
             >
               {track?.title}
             </h1>
             <h2
               className={` font-semibold ${
-                playlist ? "text-[0.8rem]" : "text-[1rem]"
+                isPlaylistShown ? "text-[0.8rem]" : "text-[1rem]"
               } font-light text-[#F7D8D6]`}
             >
               {track?.user.name}
@@ -69,7 +72,7 @@ function Player() {
           <div id="progress-bar" className="mt-1">
             <div
               className={`${
-                playlist ? "w-[500px]" : "w-[800px]"
+                isPlaylistShown ? "w-[500px]" : "w-[800px]"
               } bg-[rgba(255,255,255,0.125)] rounded-full h-2.5 mb-5`}
               onClick={(e) => checkSeekBar(e, seekBarRef, audioRef)}
               ref={seekBarRef}
@@ -90,7 +93,7 @@ function Player() {
           </div>
           <div
             id="player-button-container"
-            className={`flex gap-5 ${playlist ? "mb-1" : ""}`}
+            className={`flex gap-5 ${isPlaylistShown ? "mb-1" : ""}`}
           >
             <IoShuffleSharp className="text-[2rem] cursor-pointer hover:text-[#F96985]" />
             <CgPlayTrackPrev className="text-[2rem] cursor-pointer hover:text-[#F96985]" />
@@ -117,6 +120,22 @@ function Player() {
           </div>
         </div>
       </div>
+      {!isPlaylistShown && (
+        <div
+          id="playlist-show-button-container"
+          className="flex justify-between w-full"
+        >
+          <div className="pl-3">
+            <p className="text-lg font-light text-[#F7D8D6]">Playlist</p>
+          </div>
+          <div className="pr-10">
+            <CgChevronDoubleUpR
+              className="text-[1.5rem] text-[#F7D8D6] cursor-pointer"
+              onClick={() => setIsPlaylistShown(!isPlaylistShown)}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

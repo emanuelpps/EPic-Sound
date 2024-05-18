@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import getPlaylistTracks from "@/services/getPlaylistTracks";
-
 export const usePlaylistTracksStore = create((set) => ({
   playlistTracks: null,
   setPlaylistTracks: async (playlistId) => {

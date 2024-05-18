@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import trendingAlbums from "@/services/trendingAlbums";
 import { useAlbumStore } from "@/store/albumStore";
 import { usePlaylistStore } from "@/store/playlistStore";
+import { usePageSelectionStore } from "@/store/pageSelectionStore";
 
 function AlbumWeek() {
+  const { setPage } = usePageSelectionStore();
   const { setPlaylist } = usePlaylistStore();
   const { setAlbum } = useAlbumStore();
   const [albumList, setAlbumList] = useState([{}]);
@@ -27,7 +29,7 @@ function AlbumWeek() {
 
     getTrendingAlbums();
   }, []);
-console.log("albumList", albumList);
+  console.log("albumList", albumList);
   return (
     <>
       {apiResponse.isLoading ? (
@@ -42,7 +44,11 @@ console.log("albumList", albumList);
           <div className="flex flex-row justify-center items-center flex-wrap gap-10 mt-2">
             {albumList.map((album) => (
               <div
-                onClick={() => {setAlbum(album.id); setPlaylist(album.id)}}
+                onClick={() => {
+                  setAlbum(album.id),
+                  setPlaylist(album.id),
+                  setPage(2);
+                }}
                 key={album.id}
                 className="cursor-pointer items-center hover:bg-[#2d1631] hover:shadow-md rounded-lg w-[150px] max-w-[150px] min-w-[150px] flex flex-col justify-center"
               >

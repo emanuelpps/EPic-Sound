@@ -3,8 +3,12 @@ import Image from "next/image";
 import profilePicture from "../../../../../../../public/assets/images/photo-1570295999919-56ceb5ecca61.avif";
 import getNewTrendingPlaylist from "@/services/trendingPlaylist";
 import { useTrackStore } from "@/store/trackStore";
+import { usePlaylistStore } from "@/store/playlistStore";
+import { usePageSelectionStore } from "@/store/pageSelectionStore";
 
 function TrendingPlaylist() {
+  const { page } = usePageSelectionStore();
+  const { setPlaylist } = usePlaylistStore();
   const { track } = useTrackStore();
   const [trendingPlaylist, setTrendingPlaylist] = useState([]);
   const [apiResponse, setApiResponse] = useState({
@@ -39,9 +43,13 @@ function TrendingPlaylist() {
         </div>
         <div id="trending-artist-list">
           {trendingPlaylist.map((playlist, index) => {
-            if (index < (track ? 5 : 15)) {
+            if (index < (track && page !== 2 ? 5 : 15)) {
               return (
-                <div className="flex gap-5 mt-2 justify-center cursor-pointer  hover:bg-[#2d1631] hover:shadow-md rounded-lg">
+                <div
+                  className="flex gap-5 mt-2 justify-center cursor-pointer  hover:bg-[#2d1631] hover:shadow-md rounded-lg"
+                  key={playlist.id}
+                  onClick={() => setPlaylist(playlist.id)}
+                >
                   <div>
                     {playlist.user &&
                       playlist.user.profile_picture["150x150"] && (
