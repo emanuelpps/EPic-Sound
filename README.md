@@ -1,5 +1,7 @@
 # EPic Sound: Your Ultimate Music Platform
 
+![EPic Sound Logo](https://res.cloudinary.com/dkgoszhfr/image/upload/v1715052879/vhyswxgqrrz2br5sl3xb.png)
+
 Welcome to EPic Sound, your go-to destination for discovering and enjoying the best music! EPic Sound is a music platform currently in development, leveraging the vast database of Audius to bring you an unparalleled music streaming experience.
 
 ## Features:
