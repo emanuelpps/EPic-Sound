@@ -1,27 +1,31 @@
 import React, { useState, useRef, useEffect } from "react";
-import profilePicture from "../../../../../../../../public/assets/images/photo-1570295999919-56ceb5ecca61.avif";
-import Image from "next/image";
-import { RiMenuAddFill } from "react-icons/ri";
-import { RiHeart3Line } from "react-icons/ri";
-import { RiHeart3Fill } from "react-icons/ri";
+import { RiMenuAddFill, RiHeart3Fill, RiHeart3Line } from "react-icons/ri";
 import { IoShuffleSharp } from "react-icons/io5";
-import { CgPlayButtonO } from "react-icons/cg";
-import { CgPlayPauseO } from "react-icons/cg";
-import { CgPlayTrackNext } from "react-icons/cg";
-import { CgPlayTrackPrev } from "react-icons/cg";
+import {
+  CgPlayButtonO,
+  CgPlayPauseO,
+  CgPlayTrackNext,
+  CgPlayTrackPrev,
+} from "react-icons/cg";
 import { CgRepeat } from "react-icons/cg";
 import streamTrack from "@/services/streamTrack";
-import fetchTrackData from "@/services/getTrack";
 import { useTrackStore } from "@/store/trackStore";
 import { useAlbumStore } from "@/store/albumStore";
 import { useIsPlayingTrackStore } from "@/store/isPlayingTrackStore";
-import { Fira_Code } from "next/font/google";
 import seekBarFormat from "@/lib/utils/seekBarFormat";
 import formatCurrentTime from "@/lib/utils/formatCurrentTime";
 import formatLeftTime from "@/lib/utils/formatLeftTime";
 import checkSeekBar from "@/lib/functions/checkSeekBar";
+import { togglePlay } from "@/lib/functions/togglePlay";
+import { useAudioRefStore } from "@/store/audioRef";
+import { useIsRepeatTrackStore } from "@/store/isRepeatTrackStore";
+import { toggleRepeat } from "@/lib/functions/toggleRepeat";
+import { usePageSelectionStore } from "@/store/pageSelectionStore";
 
 function MiniPlayer(props) {
+  const { page } = usePageSelectionStore();
+  const { setIsRepeating, isRepeating } = useIsRepeatTrackStore();
+  const { setAudioRef } = useAudioRefStore();
   const {
     track,
     progress,
@@ -39,23 +43,15 @@ function MiniPlayer(props) {
   const [trackData, setTrackData] = useState({});
   const [isFirstLoad, setIsFirstLoad] = useState(true);
 
-  const togglePlay = () => {
-    if (isPlaying) {
-      audioRef.current?.pause();
-    } else {
-      audioRef.current?.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
-
   useEffect(() => {
     if (track?.id) {
       (async () => {
         try {
           const response = await streamTrack(track.id);
+          setAudioRef(audioRef);
           setTrackData(response);
           if (audioRef.current.src) {
-            togglePlay();
+            togglePlay(audioRef, setIsPlaying, isPlaying);
             setIsFirstLoad(false);
           }
         } catch (error) {
@@ -66,11 +62,12 @@ function MiniPlayer(props) {
   }, [track?.id, isFirstLoad]);
 
   console.log("trackadataAaa", trackData);
+  console.log("pageSelection", page);
 
   useEffect(() => {
     if (trackData) {
       audioRef.current.src = trackData;
-      togglePlay();
+      togglePlay(audioRef, setIsPlaying, isPlaying);
     }
   }, [trackData]);
 
@@ -86,7 +83,7 @@ function MiniPlayer(props) {
   return (
     <div
       className={`${
-        track ? "row-span-2 row-start-2 justify-center items-center" : "hidden"
+        track && page !== 2 ? "row-span-2 row-start-2 justify-center items-center" : "hidden"
       }`}
     >
       <div className="flex justify-start w-[300px]">
@@ -163,29 +160,40 @@ function MiniPlayer(props) {
               className="flex flex-row w-full mt-5 justify-between items-center"
             >
               <div>
-                <IoShuffleSharp className="text-xl" />
+                <IoShuffleSharp className="text-xl cursor-pointer hover:text-[#F96985]" />
               </div>
               <div>
-                <CgPlayTrackPrev className="text-xl" />
+                <CgPlayTrackPrev className="text-xl cursor-pointer hover:text-[#F96985]" />
               </div>
               <div>
                 {isPlaying ? (
                   <CgPlayPauseO
-                    onClick={() => togglePlay()}
-                    className="text-[2.5rem]"
+                    onClick={() =>
+                      togglePlay(audioRef, setIsPlaying, isPlaying)
+                    }
+                    className="text-[2.5rem] cursor-pointer hover:text-[#F96985]"
                   />
                 ) : (
                   <CgPlayButtonO
-                    className="text-[2.5rem]"
-                    onClick={() => togglePlay()}
+                    className="text-[2.5rem] cursor-pointer hover:text-[#F96985]"
+                    onClick={() =>
+                      togglePlay(audioRef, setIsPlaying, isPlaying)
+                    }
                   />
                 )}
               </div>
               <div>
-                <CgPlayTrackNext className="text-xl" />
+                <CgPlayTrackNext className="text-xl cursor-pointer hover:text-[#F96985]" />
               </div>
               <div>
-                <CgRepeat className="text-xl" />
+                <CgRepeat
+                  className={` cursor-pointer hover:text-[#F96985] text-xl ${
+                    isRepeating ? "text-[#F96985]" : ""
+                  }`}
+                  onClick={() =>
+                    toggleRepeat(audioRef, setIsRepeating, isRepeating)
+                  }
+                />
               </div>
             </div>
           </div>
