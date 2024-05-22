@@ -18,7 +18,7 @@ function ProfileAvatar() {
               width={40}
               height={50}
               alt="profile"
-              className="rounded-full"
+              className="rounded-xl hover:opacity-50"
             />
           </Link>
         </button>

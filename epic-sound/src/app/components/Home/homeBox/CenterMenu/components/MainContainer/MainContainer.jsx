@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
-//import coverImage from "../../../../../../../../public/assets/images/big-dollar-sign.jpg";
 import trendingMonth from "@/services/trendingThisMonth";
 import { useTrackStore } from "@/store/trackStore";
 
@@ -17,7 +15,6 @@ function MainContainer() {
         const response = await trendingMonth();
         setTrendingThisMonth(response.data);
         setApiResponse({ isLoading: false });
-        console.log("tredng", response.data);
       } catch (error) {
         console.log("error", error);
         setApiResponse({ response: error.message });
@@ -26,6 +23,7 @@ function MainContainer() {
 
     getTrendingThisMonth();
   }, []);
+
   return (
     <div className="col-span-4 row-span-1 ml-24 rounded-md relative">
       {trendingThisMonth[0].artwork &&

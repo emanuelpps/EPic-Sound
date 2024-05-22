@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import profilePicture from "../../../../../../../../public/assets/images/photo-1570295999919-56ceb5ecca61.avif";
 import { FaRegCirclePlay } from "react-icons/fa6";
 import trendingTracks from "@/services/trendingTracks";
 import { FaHeart } from "react-icons/fa6";
@@ -21,7 +20,6 @@ function PopularTracks() {
         const response = await trendingTracks();
         setPopularTracks(response.data.slice(0, 3));
         setApiResponse({ isLoading: false });
-        console.log("response", response.data);
       } catch (error) {
         console.log("error", error);
         setApiResponse({ response: error.message });
@@ -30,8 +28,6 @@ function PopularTracks() {
 
     getPopularTracks();
   }, []);
-
-  console.log(popularTracks);
 
   return (
     <>

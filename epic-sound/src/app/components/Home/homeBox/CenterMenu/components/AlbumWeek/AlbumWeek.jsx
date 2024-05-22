@@ -20,7 +20,6 @@ function AlbumWeek() {
         const response = await trendingAlbums();
         setAlbumList(response.data.slice(0, 6));
         setApiResponse({ isLoading: false });
-        console.log("response", response.data);
       } catch (error) {
         console.log("error", error);
         setApiResponse({ response: error.message });
@@ -29,7 +28,7 @@ function AlbumWeek() {
 
     getTrendingAlbums();
   }, []);
-  console.log("albumList", albumList);
+
   return (
     <>
       {apiResponse.isLoading ? (
@@ -45,9 +44,7 @@ function AlbumWeek() {
             {albumList.map((album) => (
               <div
                 onClick={() => {
-                  setAlbum(album.id),
-                  setPlaylist(album.id),
-                  setPage(2);
+                  setAlbum(album.id), setPlaylist(album.id), setPage(2);
                 }}
                 key={album.id}
                 className="cursor-pointer items-center hover:bg-[#2d1631] hover:shadow-md rounded-lg w-[150px] max-w-[150px] min-w-[150px] flex flex-col justify-center"
@@ -63,7 +60,7 @@ function AlbumWeek() {
                 )}
                 <div className="flex flex-col">
                   <h3 className="text-[0.8rem] w[150px] text-[#F7D8D6]">
-                    {album.user.name}
+                    {album.user?.name}
                   </h3>
                   <p className="text-[0.6rem] w-[100px]  text-[#b1a4b4]">
                     {album.playlist_name}

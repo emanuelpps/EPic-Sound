@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import profilePicture from "../../../../../../../public/assets/images/photo-1570295999919-56ceb5ecca61.avif";
 import trendingPlaylist from "@/services/trendingPlaylist";
 
 function TrendingArtist() {
@@ -16,7 +14,6 @@ function TrendingArtist() {
         const response = await trendingPlaylist();
         setArtistList(response.data.slice(0, 5));
         setApiResponse({ isLoading: false });
-        console.log("tredsssniung", response.data);
       } catch (error) {
         console.log("error", error);
         setApiResponse({ response: error.message });
@@ -38,7 +35,7 @@ function TrendingArtist() {
           {artistList.map((artis) => (
             <div className="flex gap-10 mt-2 justify-center">
               <div>
-              {artis.user && artis.user.profile_picture["150x150"] && (
+                {artis.user && artis.user.profile_picture["150x150"] && (
                   <img
                     src={artis.user.profile_picture["150x150"]}
                     alt="logo"

@@ -6,7 +6,6 @@ async function trendingTracks() {
     const response = await axios.get(
       process.env.NEXT_PUBLIC_TRENDING_TRACKS + process.env.NEXT_PUBLIC_APP_NAME
     );
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);

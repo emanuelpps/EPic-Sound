@@ -13,7 +13,6 @@ function NavBar() {
   const { playlist } = usePlaylistStore();
   const { page, setPage } = usePageSelectionStore();
 
-  console.log("page", page);
   return (
     <div
       id="nav-bar-container"
@@ -54,7 +53,7 @@ function NavBar() {
           </button>
         ) : (
           <button disabled={true}>
-            <IoIosMusicalNotes className="text-xl text-gray-600"/>
+            <IoIosMusicalNotes className="text-xl text-gray-600" />
           </button>
         )}
       </div>

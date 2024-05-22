@@ -10,7 +10,6 @@ import {
 import { CgRepeat } from "react-icons/cg";
 import streamTrack from "@/services/streamTrack";
 import { useTrackStore } from "@/store/trackStore";
-import { useAlbumStore } from "@/store/albumStore";
 import { useIsPlayingTrackStore } from "@/store/isPlayingTrackStore";
 import seekBarFormat from "@/lib/utils/seekBarFormat";
 import formatCurrentTime from "@/lib/utils/formatCurrentTime";
@@ -35,7 +34,6 @@ function MiniPlayer(props) {
     currentTime,
     setLeftTime,
   } = useTrackStore();
-  const { getAlbumId } = useAlbumStore();
   const { setIsPlaying, isPlaying } = useIsPlayingTrackStore();
   const audioRef = useRef();
   const seekBarRef = useRef();
@@ -61,9 +59,6 @@ function MiniPlayer(props) {
     }
   }, [track?.id, isFirstLoad]);
 
-  console.log("trackadataAaa", trackData);
-  console.log("pageSelection", page);
-
   useEffect(() => {
     if (trackData) {
       audioRef.current.src = trackData;
@@ -78,12 +73,12 @@ function MiniPlayer(props) {
     setLeftTime(formatLeftTime(duration, currentTime));
   };
 
-  console.log("progress", audioRef);
-
   return (
     <div
       className={`${
-        track && page !== 2 ? "row-span-2 row-start-2 justify-center items-center" : "hidden"
+        track && page !== 2
+          ? "row-span-2 row-start-2 justify-center items-center"
+          : "hidden"
       }`}
     >
       <div className="flex justify-start w-[300px]">
@@ -147,6 +142,7 @@ function MiniPlayer(props) {
                     ref={audioRef}
                     src={trackData}
                     onTimeUpdate={onPlaying}
+                    autoPlay
                   />
                 </div>
                 <div className="flex justify-between">

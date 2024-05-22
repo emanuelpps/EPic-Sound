@@ -5,7 +5,6 @@ import formatDuration from "@/lib/utils/formatDuration";
 import { CgChevronDoubleDownR } from "react-icons/cg";
 import { useTrackStore } from "@/store/trackStore";
 import { useIsPlaylistShownStore } from "@/store/isPlaylistShown";
-import { CgChevronDoubleUpR } from "react-icons/cg";
 function PlaylistContainer() {
   const { isPlaylistShown, setIsPlaylistShown } = useIsPlaylistShownStore();
   const { setTrack } = useTrackStore();
@@ -13,12 +12,9 @@ function PlaylistContainer() {
   const { playlist } = usePlaylistStore();
 
   useEffect(() => {
-    if (playlist) {
-      setPlaylistTracks(playlist.data[0].id);
-    }
+    setPlaylistTracks(playlist.data[0].id);
   }, [playlist.data[0].id]);
 
-  console.log("playlistTracks", playlistTracks);
   return (
     <div
       id="playlist-container"
