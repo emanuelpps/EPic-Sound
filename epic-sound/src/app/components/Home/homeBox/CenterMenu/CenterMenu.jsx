@@ -5,7 +5,7 @@ import MainContainer from "./components/MainContainer/MainContainer";
 
 function CenterMenu() {
   return (
-    <div className="grid grid-cols-4 grid-rows-4 gap-4">
+    <div className="flex flex-col gap-5">
       <MainContainer />
       <AlbumWeek />
       <PopularTracks />

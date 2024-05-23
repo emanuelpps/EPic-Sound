@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useTrackStore } from "@/store/trackStore";
 import { RiMenuAddFill, RiHeart3Fill, RiHeart3Line } from "react-icons/ri";
 import { IoShuffleSharp } from "react-icons/io5";
@@ -17,14 +17,29 @@ import { useIsRepeatTrackStore } from "@/store/isRepeatTrackStore";
 import checkSeekBar from "@/lib/functions/checkSeekBar";
 import { useIsPlaylistShownStore } from "@/store/isPlaylistShown";
 import { CgChevronDoubleUpR } from "react-icons/cg";
+import { usePlaylistStore } from "@/store/playlistStore";
+import nextTrack from "@/lib/functions/nextTrack";
+import { usePlaylistTracksStore } from "@/store/playlistTrackStore";
+import previousTrack from "@/lib/functions/previousTrack";
 
 function Player() {
+  const { playlistTracks } = usePlaylistTracksStore();
+  const { playlist, isFirstLoad, setIsFirstLoad } = usePlaylistStore();
   const { isPlaylistShown, setIsPlaylistShown } = useIsPlaylistShownStore();
   const seekBarRef = useRef();
   const { isRepeating, setIsRepeating } = useIsRepeatTrackStore();
   const { audioRef } = useAudioRefStore();
   const { setIsPlaying, isPlaying } = useIsPlayingTrackStore();
-  const { track, progress, leftTime, currentTime } = useTrackStore();
+  const { track, progress, leftTime, currentTime, setTrack } = useTrackStore();
+  ///const [isLiked, setIsLiked] = useState(false);
+
+  useEffect(() => {
+    if(isFirstLoad){
+      setTrack(playlistTracks?.data[0]);
+      setIsFirstLoad(!isFirstLoad);
+    }
+  }, [playlist]);
+
   return (
     <div
       id="player-container"
@@ -38,7 +53,7 @@ function Player() {
       >
         <img
           src={track?.artwork["1000x1000"]}
-          className={`rounded-xl `}
+          className={`rounded-2xl `}
           style={isPlaylistShown ? { width: "150px" } : { width: "350px" }}
         />
       </div>
@@ -96,7 +111,12 @@ function Player() {
             className={`flex gap-5 ${isPlaylistShown ? "mb-1" : ""}`}
           >
             <IoShuffleSharp className="text-[2rem] cursor-pointer hover:text-[#F96985]" />
-            <CgPlayTrackPrev className="text-[2rem] cursor-pointer hover:text-[#F96985]" />
+            <CgPlayTrackPrev
+              className="text-[2rem] cursor-pointer hover:text-[#F96985]"
+              onClick={() =>
+                previousTrack(track, playlistTracks.data, setTrack)
+              }
+            />
             {isPlaying ? (
               <CgPlayPauseO
                 onClick={() => togglePlay(audioRef, setIsPlaying, isPlaying)}
@@ -108,7 +128,10 @@ function Player() {
                 className="text-[2rem] cursor-pointer hover:text-[#F96985]"
               />
             )}
-            <CgPlayTrackNext className="text-[2rem] cursor-pointer hover:text-[#F96985]" />
+            <CgPlayTrackNext
+              className="text-[2rem] cursor-pointer hover:text-[#F96985]"
+              onClick={() => nextTrack(track, playlistTracks.data, setTrack)}
+            />
             <CgRepeat
               className={`text-[2rem] cursor-pointer hover:text-[#F96985] ${
                 isRepeating ? "text-[#F96985]" : ""
@@ -120,10 +143,10 @@ function Player() {
           </div>
         </div>
       </div>
-      {!isPlaylistShown && (
+      {playlist && !isPlaylistShown ? (
         <div
           id="playlist-show-button-container"
-          className="flex justify-between w-full"
+          className="flex justify-between w-full  pl-10 pr-10 "
         >
           <div className="pl-3">
             <p className="text-lg font-light text-[#F7D8D6]">Playlist</p>
@@ -135,7 +158,7 @@ function Player() {
             />
           </div>
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

@@ -4,7 +4,6 @@ async function getAlbum(albumId) {
   try {
     const response = await axios.get(`
       ${process.env.NEXT_PUBLIC_ALBUM}/${albumId}?app_name=${process.env.NEXT_PUBLIC_APP_NAME}`);
-    console.log("GETALBUM ------", response.data);
     return response.data;
   } catch (error) {
     console.log(error);

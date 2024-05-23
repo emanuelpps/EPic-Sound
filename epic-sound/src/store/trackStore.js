@@ -1,4 +1,6 @@
 import { create } from "zustand";
+//get track time information and progress
+//get track information
 
 export const useTrackStore = create((set) => ({
   track: null,
