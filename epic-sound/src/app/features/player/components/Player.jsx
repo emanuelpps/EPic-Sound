@@ -146,7 +146,7 @@ function Player() {
       {playlist && !isPlaylistShown ? (
         <div
           id="playlist-show-button-container"
-          className="flex justify-between w-full"
+          className="flex justify-between w-full  pl-10 pr-10 "
         >
           <div className="pl-3">
             <p className="text-lg font-light text-[#F7D8D6]">Playlist</p>

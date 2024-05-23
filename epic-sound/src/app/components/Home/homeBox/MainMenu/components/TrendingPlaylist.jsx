@@ -29,15 +29,12 @@ function TrendingPlaylist() {
     getTrendingPlaylist();
   }, []);
   return (
-    <div className="row-span-1 flex w-[250px] flex-col bg-[#2d1b30] rounded-xl mr-5 p-2">
+    <div className="row-span-1 flex w-[250px] flex-col bg-[#2d1b30] rounded-xl mr-5 pl-10 pr-10 pt-5 pb-5">
       <div className="">
         <div id="trending-artist-title" className="flex gap-10">
           <h2 className="text-lg font-light text-[#F7D8D6]">
             Trending Playlist
           </h2>
-          <div className="flex justify-center items-center">
-            <button className="text-[0.7rem]">See All</button>
-          </div>
         </div>
         <div id="trending-artist-list">
           {trendingPlaylist.map((playlist, index) => {
@@ -57,8 +54,8 @@ function TrendingPlaylist() {
                         <img
                           src={playlist.user.profile_picture["150x150"]}
                           alt="logo"
-                          width={30}
-                          height={30}
+                          width={45}
+                          height={45}
                           className="rounded-lg"
                         />
                       )}

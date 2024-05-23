@@ -25,7 +25,7 @@ function MainContainer() {
   }, []);
 
   return (
-    <div className="col-span-4 row-span-1 ml-24 rounded-md relative">
+    <div className="h-[200px] ml-24 rounded-md relative">
       {trendingThisMonth[0].artwork &&
         trendingThisMonth[0].artwork["1000x1000"] && (
           <img

@@ -95,7 +95,7 @@ function MiniPlayer(props) {
             <img
               src={track.artwork["480x480"]}
               alt="logo"
-              className="object-cover rounded-xl h-40"
+              className="object-cover rounded-2xl h-40"
             />
           )}
         </div>
