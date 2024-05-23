@@ -32,7 +32,6 @@ body {
   }
 }
 
-
 .loadership_MPURR {
   display: flex;
   position: relative;
@@ -44,35 +43,38 @@ body {
   position: absolute;
   width: 6px;
   height: 20px;
-  background: #C3556F;
+  background: #c3556f;
   top: 20px;
-  animation: loadership_MPURR_scale 1.8s infinite, loadership_MPURR_fade 1.8s infinite;
+  animation: loadership_MPURR_scale 1.8s infinite,
+    loadership_MPURR_fade 1.8s infinite;
   animation-timing-function: ease-in-out;
 }
 
 .loadership_MPURR div:nth-child(1) {
-      animation-delay: 0.00s;
-      left: 0px;
-    }
+  animation-delay: 0s;
+  left: 0px;
+}
 .loadership_MPURR div:nth-child(2) {
-      animation-delay: 0.16s;
-      left: 10px;
-    }
+  animation-delay: 0.16s;
+  left: 10px;
+}
 .loadership_MPURR div:nth-child(3) {
-      animation-delay: 0.32s;
-      left: 20px;
-    }
+  animation-delay: 0.32s;
+  left: 20px;
+}
 .loadership_MPURR div:nth-child(4) {
-      animation-delay: 0.48s;
-      left: 30px;
-    }
+  animation-delay: 0.48s;
+  left: 30px;
+}
 .loadership_MPURR div:nth-child(5) {
-      animation-delay: 0.64s;
-      left: 40px;
-    }
+  animation-delay: 0.64s;
+  left: 40px;
+}
 
 @keyframes loadership_MPURR_scale {
-  0%, 44.44444444444445%, 100% {
+  0%,
+  44.44444444444445%,
+  100% {
     transform: scaleY(1);
   }
   22.222222222222225% {
@@ -81,7 +83,9 @@ body {
 }
 
 @keyframes loadership_MPURR_fade {
-  0%, 44.44444444444445%, 100% {
+  0%,
+  44.44444444444445%,
+  100% {
     opacity: 1;
   }
   22.222222222222225% {
@@ -89,3 +93,15 @@ body {
   }
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius:0 1rem 1rem 0;
+  border-radius: 0 5rem 5rem 0;
+  background: #853D53;
+}

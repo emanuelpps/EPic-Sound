@@ -5,11 +5,14 @@ import { BiLibrary } from "react-icons/bi";
 import { IoIosMusicalNotes } from "react-icons/io";
 import Link from "next/link";
 import { usePageSelectionStore } from "@/store/pageSelectionStore";
+import { useTrackStore } from "@/store/trackStore";
+import { usePlaylistStore } from "@/store/playlistStore";
 
 function NavBar() {
+  const { track } = useTrackStore();
+  const { playlist } = usePlaylistStore();
   const { page, setPage } = usePageSelectionStore();
 
-  console.log("page", page);
   return (
     <div
       id="nav-bar-container"
@@ -40,13 +43,19 @@ function NavBar() {
         id="music-icon-container"
         className="flex justify-center items-center"
       >
-        <button onClick={() => setPage(2)}>
-          <IoIosMusicalNotes
-            className={`${
-              page == 2 ? "text-[#F96985]" : "text-[#F7D8D6]"
-            } hover:text-[#f88ea0] text-xl`}
-          />
-        </button>
+        {track || playlist ? (
+          <button onClick={() => setPage(2)}>
+            <IoIosMusicalNotes
+              className={`${
+                page == 2 ? "text-[#F96985]" : "text-[#F7D8D6]"
+              } hover:text-[#f88ea0] text-xl`}
+            />
+          </button>
+        ) : (
+          <button disabled={true}>
+            <IoIosMusicalNotes className="text-xl text-gray-600" />
+          </button>
+        )}
       </div>
     </div>
   );

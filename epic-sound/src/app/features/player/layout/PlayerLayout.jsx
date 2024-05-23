@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Player from "../components/Player";
 import PlaylistContainer from "../components/PlaylistContainer";
 import { usePlaylistStore } from "@/store/playlistStore";
@@ -9,7 +9,6 @@ function PlayerLayout() {
   const { isPlaylistShown, setIsPlaylistShown } = useIsPlaylistShownStore();
   const { playlist } = usePlaylistStore();
   const { album } = useAlbumStore();
-  console.log("playlist", playlist);
 
   useEffect(() => {
     if (playlist) {
@@ -18,6 +17,7 @@ function PlayerLayout() {
       setIsPlaylistShown(false);
     }
   }, [playlist, album]);
+
   return (
     <div
       className={`grid grid-cols-1 gap-4 max-h-[100vh] min-h-[100vh] h-[100vh]`}

@@ -6,7 +6,6 @@ async function trendingPlaylist() {
       process.env.NEXT_PUBLIC_TRENDING_PLAYLIST +
         process.env.NEXT_PUBLIC_APP_NAME
     );
-    console.log('dataaaaaaa',response.data);
     return response.data;
   } catch (error) {
     console.log(error);
