@@ -38,12 +38,12 @@ function PopularTracks() {
           <p>{apiResponse.response}</p>
         </div>
       ) : (
-        <div className="h-[205px] pl-10 pr-10 ml-24 bg-[#2d1b30] rounded-xl pt-5 pb-5 overflow-y-auto">
+        <div className="h-[220px] max-h-[230px] pl-10 pr-10 ml-24 bg-[#2d1b30] rounded-xl pt-5 pb-5 overflow-y-auto">
           <h2 className="text-lg font-light text-[#F7D8D6]">Popular Tracks</h2>
           <div className="flex flex-col gap-2 mt-2">
             {popularTracks?.map((popularTrack, index) => (
               <div
-                className="flex flex-row gap-14 justify-start items-center max-h-[fit-content] cursor-pointer hover:bg-[#2d1631] hover:shadow-md rounded-lg"
+                className="flex flex-row gap-14 justify-start items-center max-h-[fit-content] cursor-pointer hover:bg-[#2d1631] hover:shadow-md rounded-2xl pl-5"
                 onClick={() => setTrack(popularTrack)}
               >
                 <p
