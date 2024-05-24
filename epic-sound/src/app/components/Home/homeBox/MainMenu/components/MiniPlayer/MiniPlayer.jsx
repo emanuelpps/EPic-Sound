@@ -77,17 +77,17 @@ function MiniPlayer(props) {
     <div
       className={`${
         track && page !== 2
-          ? "row-span-2 row-start-2 justify-center items-center"
+          ? "justify-center items-center"
           : "hidden"
       }`}
     >
-      <div className="flex justify-start w-[300px]">
+      <div className="flex items-center w-full">
         {track ? <h2 className="text-start">Now Playing</h2> : <></>}
       </div>
       <div
         className={`backdrop-blur-[10px] backdrop-saturate-[38%] bg-[rgba(248,142,160,0.22)] border rounded-xl border-[rgba(255,255,255,0.125)]
         -webkit-backdrop-filter: blur(10px) saturate(38%) ${
-          track ? "h-[360px] w-[250px]" : "pb-10"
+          track ? "h-[325px] w-[250px]" : "pb-10"
         }  flex flex-col justify-center items-center`}
       >
         <div className="flex justify-center items-center mt-5 w-full">
@@ -95,7 +95,7 @@ function MiniPlayer(props) {
             <img
               src={track.artwork["480x480"]}
               alt="logo"
-              className="object-cover rounded-2xl h-40"
+              className="object-cover rounded-2xl h-[140px]"
             />
           )}
         </div>
@@ -105,7 +105,7 @@ function MiniPlayer(props) {
               <h3 className="text-[0.7rem] w-40 min-w-20 max-w-40 ">
                 {track?.title}
               </h3>
-              <p className="text-[0.7rem] w-40 min-w-20 max-w-40 ">
+              <p className="font-thin text-[0.7rem] w-40 min-w-20 max-w-40 ">
                 {track?.user?.name}
               </p>
             </div>

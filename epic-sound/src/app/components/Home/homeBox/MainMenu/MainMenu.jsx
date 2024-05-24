@@ -5,7 +5,7 @@ import MiniPlayer from "./components/MiniPlayer/MiniPlayer";
 
 function MainMenu(props) {
   return (
-    <div className="grid grid-cols-1 grid-rows-4 gap-4">
+    <div className="flex flex-col items-center h-screen gap-5">
       <TrendingPlaylist />
       <MiniPlayer {...props}/>
     </div>

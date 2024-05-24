@@ -29,14 +29,14 @@ function TrendingPlaylist() {
     getTrendingPlaylist();
   }, []);
   return (
-    <div className="row-span-1 flex w-[250px] flex-col bg-[#2d1b30] rounded-xl mr-5 pl-10 pr-10 pt-5 pb-5">
-      <div className="">
-        <div id="trending-artist-title" className="flex gap-10">
+    <div className="flex w-[250px] flex-col bg-[#2d1b30] rounded-xl ">
+      <div className="flex flex-col">
+        <div id="trending-artist-title" className="flex pl-5 pt-5">
           <h2 className="text-lg font-light text-[#F7D8D6]">
             Trending Playlist
           </h2>
         </div>
-        <div id="trending-artist-list">
+        <div id="trending-artist-list" className="pl-10 pr-10 pb-5">
           {trendingPlaylist.map((playlist, index) => {
             if (index < (track && page !== 2 ? 5 : 15)) {
               return (
@@ -54,7 +54,7 @@ function TrendingPlaylist() {
                         <img
                           src={playlist.user.profile_picture["150x150"]}
                           alt="logo"
-                          width={45}
+                          width={35}
                           height={45}
                           className="rounded-lg"
                         />
