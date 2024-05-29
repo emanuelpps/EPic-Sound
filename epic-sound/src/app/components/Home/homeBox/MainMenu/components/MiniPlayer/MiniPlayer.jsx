@@ -24,7 +24,7 @@ import { usePlaylistTracksStore } from "@/store/playlistTrackStore";
 import nextTrack from "@/lib/functions/nextTrack";
 
 function MiniPlayer(props) {
-  const {playlistTracks} = usePlaylistTracksStore();
+  const { playlistTracks } = usePlaylistTracksStore();
   const { page } = usePageSelectionStore();
   const { setIsRepeating, isRepeating } = useIsRepeatTrackStore();
   const { setAudioRef } = useAudioRefStore();
@@ -36,7 +36,7 @@ function MiniPlayer(props) {
     setCurrentTime,
     currentTime,
     setLeftTime,
-    setTrack
+    setTrack,
   } = useTrackStore();
   const { setIsPlaying, isPlaying } = useIsPlayingTrackStore();
   const audioRef = useRef();
