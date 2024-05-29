@@ -101,7 +101,12 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  -webkit-border-radius:0 1rem 1rem 0;
+  -webkit-border-radius:0 0.5rem 0.5rem 0;
   border-radius: 0 5rem 5rem 0;
   background: #853D53;
+}
+
+.scrollBar-gutter {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
 }

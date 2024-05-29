@@ -29,7 +29,7 @@ function TrendingPlaylist() {
     getTrendingPlaylist();
   }, []);
   return (
-    <div className="flex w-[250px] flex-col bg-[#2d1b30] rounded-xl ">
+    <div className="flex w-[250px] flex-col bg-[#2d1b30] rounded-xl pr-5">
       <div className="flex flex-col">
         <div id="trending-artist-title" className="flex pl-5 pt-5">
           <h2 className="text-lg font-light text-[#F7D8D6]">

@@ -9,8 +9,8 @@ function StartContainer() {
   const { page } = usePageSelectionStore();
   const [trackId, setTrackId] = useState();
   return (
-    <div id="inside-box" className="flex gap-5">
-      <div id="center-menu">
+    <div id="inside-box" className="flex ">
+      <div id="center-menu" className="w-screen">
         {page === 0 ? (
           <CenterMenu trackId={trackId} setTrackId={setTrackId} />
         ) : page === 1 ? (
@@ -21,7 +21,7 @@ function StartContainer() {
           <ProfilePage trackId={trackId} setTrackId={setTrackId} />
         ) : null}
       </div>
-      <div id="main-menu" className="">
+      <div id="main-menu" className="mr-5">
         <MainMenu trackId={trackId} setTrackId={setTrackId} />
       </div>
     </div>

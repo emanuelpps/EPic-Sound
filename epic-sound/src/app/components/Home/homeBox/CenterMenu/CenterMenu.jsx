@@ -5,7 +5,7 @@ import MainContainer from "./components/MainContainer/MainContainer";
 
 function CenterMenu() {
   return (
-    <div className="flex flex-col gap-5 ">
+    <div className="flex flex-col gap-3 w-[98%] max-w-[98%]">
       <MainContainer />
       <AlbumWeek />
       <PopularTracks />

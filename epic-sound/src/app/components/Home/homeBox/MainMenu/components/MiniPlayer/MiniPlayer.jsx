@@ -20,8 +20,11 @@ import { useAudioRefStore } from "@/store/audioRef";
 import { useIsRepeatTrackStore } from "@/store/isRepeatTrackStore";
 import { toggleRepeat } from "@/lib/functions/toggleRepeat";
 import { usePageSelectionStore } from "@/store/pageSelectionStore";
+import { usePlaylistTracksStore } from "@/store/playlistTrackStore";
+import nextTrack from "@/lib/functions/nextTrack";
 
 function MiniPlayer(props) {
+  const {playlistTracks} = usePlaylistTracksStore();
   const { page } = usePageSelectionStore();
   const { setIsRepeating, isRepeating } = useIsRepeatTrackStore();
   const { setAudioRef } = useAudioRefStore();
@@ -33,6 +36,7 @@ function MiniPlayer(props) {
     setCurrentTime,
     currentTime,
     setLeftTime,
+    setTrack
   } = useTrackStore();
   const { setIsPlaying, isPlaying } = useIsPlayingTrackStore();
   const audioRef = useRef();
@@ -76,9 +80,7 @@ function MiniPlayer(props) {
   return (
     <div
       className={`${
-        track && page !== 2
-          ? "justify-center items-center"
-          : "hidden"
+        track && page !== 2 ? "justify-center items-center" : "hidden"
       }`}
     >
       <div className="flex items-center w-full">
@@ -142,6 +144,10 @@ function MiniPlayer(props) {
                     ref={audioRef}
                     src={trackData}
                     onTimeUpdate={onPlaying}
+                    onEnded={() => {
+                      if (playlistTracks?.data.length)
+                        nextTrack(track, playlistTracks.data, setTrack);
+                    }}
                     autoPlay
                   />
                 </div>

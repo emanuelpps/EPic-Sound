@@ -41,6 +41,10 @@ function Player() {
     }
   }, [playlist, playlistTracks]);
 
+  console.log("PLAYTRACKS", playlistTracks);
+  console.log("PLAYLIST", playlist);
+  console.log("tracks", track);
+
   return (
     <>
       <div
@@ -78,8 +82,16 @@ function Player() {
               </h2>
             </div>
             <div className="flex gap-5">
-              <RiMenuAddFill className={`${isPlaylistShown ? "text-[1.2rem]" : "text-[1.5rem]"}`}/>
-              <RiHeart3Line className={`${isPlaylistShown ? "text-[1.2rem]" : "text-[1.5rem]"}`}/>
+              <RiMenuAddFill
+                className={`${
+                  isPlaylistShown ? "text-[1.2rem]" : "text-[1.5rem]"
+                }`}
+              />
+              <RiHeart3Line
+                className={`${
+                  isPlaylistShown ? "text-[1.2rem]" : "text-[1.5rem]"
+                }`}
+              />
             </div>
           </div>
           <div
@@ -112,12 +124,24 @@ function Player() {
               id="player-button-container"
               className={`flex gap-5 ${isPlaylistShown ? "mb-1" : ""}`}
             >
-              <IoShuffleSharp className="text-[2rem] cursor-pointer hover:text-[#F96985]" />
+              <IoShuffleSharp
+                className={`text-[2rem] ${
+                  playlistTracks === null
+                    ? "disabled text-gray-600"
+                    : "cursor-pointer hover:text-[#F96985] "
+                }`}
+              />
               <CgPlayTrackPrev
-                className="text-[2rem] cursor-pointer hover:text-[#F96985]"
-                onClick={() =>
-                  previousTrack(track, playlistTracks.data, setTrack)
-                }
+                className={`text-[2rem] ${
+                  playlistTracks === null
+                    ? "disabled text-gray-600"
+                    : "cursor-pointer hover:text-[#F96985] "
+                }`}
+                onClick={() => {
+                  if (playlistTracks?.data.length) {
+                    previousTrack(track, playlistTracks.data, setTrack);
+                  }
+                }}
               />
               {isPlaying ? (
                 <CgPlayPauseO
@@ -131,8 +155,16 @@ function Player() {
                 />
               )}
               <CgPlayTrackNext
-                className="text-[2rem] cursor-pointer hover:text-[#F96985]"
-                onClick={() => nextTrack(track, playlistTracks.data, setTrack)}
+                className={`text-[2rem]  ${
+                  playlistTracks === null
+                    ? "disabled text-gray-600"
+                    : "cursor-pointer hover:text-[#F96985] "
+                }`}
+                onClick={() => {
+                  if (playlistTracks?.data.length) {
+                    nextTrack(track, playlistTracks.data, setTrack);
+                  }
+                }}
               />
               <div className="flex flex-col items-center h-[50px]">
                 <CgRepeat

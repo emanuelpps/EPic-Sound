@@ -32,13 +32,13 @@ function PopularTracks() {
   console.log("popuuuuuuu", track);
 
   return (
-    <>
+    <div className="flex ">
       {apiResponse.isLoading ? (
         <div className="flex flex-col justify-center items-center">
           <p>{apiResponse.response}</p>
         </div>
       ) : (
-        <div className="h-[200px] max-h-[200px] pl-10 pr-10 ml-24 bg-[#2d1b30] rounded-xl pt-5 pb-5 overflow-y-auto">
+        <div className="h-[190px] max-h-[200px] pl-10 pr-10 ml-24 bg-[#2d1b30] rounded-xl pt-5 pb-5  scrollBar-gutter">
           <h2 className="text-lg font-light text-[#F7D8D6]">Popular Tracks</h2>
           <div className="flex flex-col gap-2 mt-2">
             {popularTracks?.map((popularTrack, index) => (
@@ -73,7 +73,7 @@ function PopularTracks() {
                 >
                   {popularTrack.title}
                 </h2>
-                <p className="flex text-[0.7rem] w-[150px] text-[#b1a4b4]">
+                <p className="flex text-[0.7rem] w-[120px] text-[#b1a4b4]">
                   {popularTrack.user?.name}
                 </p>
                 <p className="flex text-[0.7rem] w-[100px]  text-[#b1a4b4]">
@@ -94,7 +94,7 @@ function PopularTracks() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 
