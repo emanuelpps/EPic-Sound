@@ -59,7 +59,7 @@ function AlbumWeek() {
                   />
                 )}
                 <div className="flex flex-col">
-                  <h3 className="text-[0.9rem] text-[#F7D8D6] w-[fit-content]">
+                  <h3 className="text-[0.8rem] text-[#F7D8D6] w-[fit-content]">
                     {album.user?.name}
                   </h3>
                   <p className="text-[0.7rem] w-[fit-content]  text-[#b1a4b4]">

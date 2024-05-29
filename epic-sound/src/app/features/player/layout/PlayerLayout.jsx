@@ -20,7 +20,7 @@ function PlayerLayout() {
 
   return (
     <div
-      className={`grid grid-cols-1 gap-4 max-h-[100vh] min-h-[100vh] h-[100vh]`}
+      className={`grid grid-cols-1 gap-4 max-h-[100vh] min-h-[100vh] h-[100vh] max-w-[98%]`}
     >
       <Player />
       {isPlaylistShown ? <PlaylistContainer /> : null}
