@@ -1,14 +1,13 @@
 import axios from "axios";
 
-async function getTrack(trackId) {
-  try {
-    const response = await axios.get(`
-      ${process.env.NEXT_PUBLIC_TRACK}/${trackId}?app_name=${process.env.NEXT_PUBLIC_APP_NAME}`);
-    return response.data;
-  } catch (error) {
-    console.log(error);
-    return error.message;
-  }
-}
+const getTrackURL = (trackId) =>
+  `${process.env.NEXT_PUBLIC_TRACK}/${trackId}?app_name=${process.env.NEXT_PUBLIC_APP_NAME}`;
 
+const getTrack = (trackId) =>
+  fetch(getTrackURL(trackId))
+    .then(res => res.json())
+    .catch(error => {
+      console.log(error);
+      throw error.message;
+    });
 export default getTrack;

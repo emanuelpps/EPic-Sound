@@ -1,15 +1,15 @@
-import axios from "axios";
-import { AxiosError } from "axios";
-
 async function trendingTracks() {
   try {
-    const response = await axios.get(
-      process.env.NEXT_PUBLIC_TRENDING_TRACKS + process.env.NEXT_PUBLIC_APP_NAME
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_TRENDING_TRACKS}?app_name=${process.env.NEXT_PUBLIC_APP_NAME}`
     );
-    return response.data;
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
   } catch (error) {
     console.log(error);
-    return AxiosError(message);
+    throw error;
   }
 }
 
