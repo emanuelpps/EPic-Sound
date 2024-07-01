@@ -34,11 +34,14 @@ function MainContainer() {
             className="object-cover rounded-xl w-[100%] h-[100%] absolute inset-0"
           />
         )}
-      <div className="absolute inset-0 flex flex-col justify-center items-start ml-24">
+      <div
+        className="absolute inset-0 flex flex-col justify-center items-start pl-24 h-full w-full bg-[#2D202F] rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-50
+"
+      >
         <h3
           className="text-[#F7D8D6] text-center text-1xl  mb-2  shadow-5xl font-light"
           style={{
-            textShadow: "-4px -1px 1px rgba(0,0,0,0.77)",
+            textShadow: "-2px 0px 1px rgba(0,0,0,0.77)",
             filter: "drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5))",
           }}
         >
@@ -47,7 +50,7 @@ function MainContainer() {
         <p
           className="text-[#F7D8D6] text-center text-3xl font-medium "
           style={{
-            textShadow: "-4px -1px 1px rgba(0,0,0,0.77)",
+            textShadow: "-2px -1px 1px rgba(0,0,0,0.77)",
             filter: "drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5))",
           }}
         >
@@ -56,7 +59,7 @@ function MainContainer() {
         <p
           className="text-[#F7B3BB] text-center"
           style={{
-            textShadow: "-4px -1px 1px rgba(0,0,0,0.77)",
+            textShadow: "-2px -1px 1px rgba(0,0,0,0.77)",
             filter: "drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5))",
           }}
         >

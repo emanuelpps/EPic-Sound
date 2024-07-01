@@ -7,6 +7,7 @@ import Link from "next/link";
 import { usePageSelectionStore } from "@/store/pageSelectionStore";
 import { useTrackStore } from "@/store/trackStore";
 import { usePlaylistStore } from "@/store/playlistStore";
+import { PiPlaylist } from "react-icons/pi";
 
 function NavBar() {
   const { track } = useTrackStore();
@@ -39,15 +40,24 @@ function NavBar() {
           />
         </button>
       </div>
+      <div id="playlist-icon-container">
+        <button onClick={() => setPage(2)}>
+          <PiPlaylist
+            className={`${
+              page == 2 ? "text-[#F96985]" : "text-[#F7D8D6]"
+            } hover:text-[#f88ea0] text-xl`}
+          />
+        </button>
+      </div>
       <div
         id="music-icon-container"
         className="flex justify-center items-center"
       >
         {track || playlist ? (
-          <button onClick={() => setPage(2)}>
+          <button onClick={() => setPage(3)}>
             <IoIosMusicalNotes
               className={`${
-                page == 2 ? "text-[#F96985]" : "text-[#F7D8D6]"
+                page == 3 ? "text-[#F96985]" : "text-[#F7D8D6]"
               } hover:text-[#f88ea0] text-xl`}
             />
           </button>
